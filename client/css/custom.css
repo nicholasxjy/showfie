@@ -1,0 +1,190 @@
+.form-control {
+  height: 40px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 15px;
+  padding-right: 23px; }
+
+.btn {
+  padding: 8px 12px; }
+
+.auth-wrap {
+  width: 716px;
+  height: 455px;
+  margin: 200px auto;
+  background: url('../images/bg-auth.jpg');
+  text-align: center;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  color: #ffffff; }
+
+.sf-authform-wrap {
+  width: 270px;
+  margin: 15px auto; }
+
+.welcome-wrap, .login-wrap, .forget-wrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url('../images/welcome-bg.jpg'); }
+
+.forget-link {
+  padding-top: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: #bdc3c7;
+  text-decoration: underline; }
+
+.login-wrap-inner, .forget-wrap-inner {
+  width: 270px;
+  background-color: #edeff1;
+  border-radius: 4px;
+  margin: 100px auto;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3); }
+
+.sf-form {
+  padding: 10px 25px; }
+
+.sf-form .login-field-icon {
+  float: right;
+  margin-top: -27px;
+  margin-right: 10px; }
+
+.sf-form .login-field {
+  font-size: 14px; }
+
+.close-wrap {
+  float: right;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  font-size: 20px; }
+
+.close-wrap a {
+  color: #34495E; }
+
+.login-top-banner {
+  position: relative;
+  height: 70px;
+  margin-bottom: 15px; }
+
+.login-top-banner img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ffffff;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -25px; }
+
+.other-auth-login {
+  margin-top: 15px; }
+
+.other-auth-title {
+  font-size: 14px;
+  margin-bottom: 10px; }
+
+.third-auth-item {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  line-height: 40px; }
+
+.third-auth-weibo {
+  background-color: #E74C3C; }
+
+.third-auth-qq {
+  background-color: #3498DB; }
+
+.third-auth-weixin {
+  background-color: #2ECC71; }
+
+.forget-tip {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 300;
+  color: #95A5A6; }
+
+.feed-wrap {
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #ffffff; }
+
+.feed-inner {
+  padding-bottom: 15px; }
+
+.feed-content-wrap {
+  padding: 10px 10px 15px 10px; }
+
+.photo-wrap {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.author-wrap {
+  position: relative; }
+
+.author-avatar-wrap {
+  width: 40px;
+  height: 40px; }
+
+.author-name-wrap {
+  position: absolute;
+  left: 60px;
+  top: 0; }
+
+.author-name {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px; }
+
+.post-time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px; }
+
+.feed-content {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  padding-left: 5px; }
+
+.like-comment-wrap {
+  width: 100%;
+  margin-top: 5px;
+  padding-left: 8px; }
+
+.like-inner {
+  padding-left: 10px; }
+
+.like-inner a {
+  color: #34495e; }
+
+.like-inner a.comment-link {
+  padding-left: 15px; }
+
+.like-count, .comment-count {
+  font-size: 12px;
+  padding-left: 5px; }
+
+.like-comment-wrap ul {
+  padding-right: 15px;
+  padding-top: 4px;
+  margin-bottom: 0; }
+
+.like-comment-wrap ul li {
+  padding-left: 0; }
+
+.like-comment-wrap li img {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ffffff; }

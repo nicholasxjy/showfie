@@ -1,0 +1,43 @@
+<div class="sf-wrap">
+  <div class="welcome-wrap">
+    <div class="welcome-inner">
+      <div class="auth-wrap animated zoomIn">
+        <div class="atuh-content">
+          <div class="auth-title">
+            <h1>Showfie</h1>
+          </div>
+          <div class="auth-subtitle">
+            They used to Pinterest plan a dream trip.
+          </div>
+          <div class="auth-subcontent">
+            Join Showfie to show the best and beautiful that inspire others.
+          </div>
+          <div class="sf-authform-wrap">
+            <form novalidate name="signUpForm" ng-submit="submitSignUpForm(user)">
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.username"
+              placeholder="Username" ng-minlength="6" ng-maxlength="20" required>
+            </div>
+              <div class="form-group">
+                <input type="email" class="form-control" ng-model="user.email"
+                placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" ng-model="user.password"
+                placeholder="Password" ng-minlength="6" ng-maxlength="30" required>
+              </div>
+              <button class="btn btn-primary btn-block" type="submit"
+              ng-disabled="signUpForm.$invalid">
+                Sign Up
+              </button>
+              <p>Already have an account? <a ui-sref="login">Login</a></p>
+              <p class="td-error animated" ng-class="{'zoomIn': hasError}"
+              >{{errorMessage}}</p>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div ng-include="'views/partials/spinner.html'"></div>
+    </div>
+  </div>
+</div>
