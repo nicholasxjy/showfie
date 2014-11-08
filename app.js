@@ -3,7 +3,13 @@ var config = require('./config');
 var AV = require('avoscloud-sdk').AV;
 var path = require('path');
 var route = require('./route');
+var bodyParser = require('body-parser');
 var app = express();
+
+//body parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 //view engine setup
 app.set('views', path.join(__dirname, 'client/views'));

@@ -24,6 +24,56 @@
   width: 270px;
   margin: 15px auto; }
 
+.td-error {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  color: #E74C3C;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.spinner-wrap {
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  top: 33%;
+  left: 50%;
+  margin-left: -40px;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  border-radius: 100%;
+  display: none; }
+
+.spinner-show {
+  display: block;
+  animation-name: bounceInDown;
+  -webkit-animation-name: bounceInDown; }
+
+.spinner-wrap img {
+  margin: 21px 0 0 21px;
+  -webkit-animation: loading 2s linear;
+  animation: loading 2s linear;
+  animation-fill-mode: forwords;
+  -webkit-animation-fill-mode: forwards; }
+
+@-webkit-keyframes loading {
+  100% {
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-ms-keyframes loading {
+  100% {
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes loading {
+  100% {
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
 .welcome-wrap, .login-wrap, .forget-wrap {
   position: fixed;
   top: 0;

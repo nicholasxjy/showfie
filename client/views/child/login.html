@@ -20,7 +20,7 @@
                     <button class="btn btn-block btn-success" type="submit" ng-disabled="loginForm.$invalid">Login</button>
                 </form>
             </div>
-            <p class="td-error animated" ng-class="{'zoomIn': hasError}">{{errorMessage}}</p>
+            <p class="td-error animated zoomIn" ng-show="hasError">{{errorMessage}}</p>
             <a ui-sref="forgetpass" class="forget-link">Forget Password?</a>
             <div class="other-auth-login">
                 <div class="other-auth-title">

@@ -31,7 +31,7 @@
                 Sign Up
               </button>
               <p>Already have an account? <a ui-sref="login">Login</a></p>
-              <p class="td-error animated" ng-class="{'zoomIn': hasError}"
+              <p class="td-error animated zoomIn" ng-show="hasError"
               >{{errorMessage}}</p>
             </form>
           </div>

@@ -11,6 +11,7 @@
 angular
   .module('showfieApp', [
     'ui.router',
+    'app.services',
     'app.controllers'
   ])
   .config([
@@ -33,5 +34,10 @@ angular
           url: '/forgetpass',
           templateUrl: 'views/child/forgetpass.html',
           controller: 'ForgetPassController'
+        })
+        .state('home', {
+          url: '/home',
+          templateUrl: 'views/child/home.html',
+          controller: 'HomeController'
         })
   }]);

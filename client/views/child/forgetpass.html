@@ -14,7 +14,8 @@
                         <label for="login-email" class="login-field-icon fa fa-envelope"></label>
                     </div>
                     <button class="btn btn-block btn-success" type="submit" ng-disabled="forgetForm.$invalid">Submit</button>
-                    <p class="td-error animated" ng-class="{'zoomIn': hasError}">{{errorMessage}}</p>
+                    <p class="td-success animated zoomIn" ng-show="isSucceed">{{successMessage}}</p>
+                    <p class="td-error animated zoomIn" ng-show="hasError">{{errorMessage}}</p>
                 </form>
             </div>
         </div>

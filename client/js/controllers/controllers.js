@@ -2,6 +2,7 @@
 (function() {
   angular
     .module('app.controllers', [
-      'ui.router'
+      'ui.router',
+      'app.services'
     ]);
 })();
