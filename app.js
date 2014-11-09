@@ -34,8 +34,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.listen(3000, function() {
-  console.log('The serve is listening on port 3000!');
+app.listen(1337, function() {
+  console.log('The serve is listening on port 1337!');
 });
 
 module.exports = app;

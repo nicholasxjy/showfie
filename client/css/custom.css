@@ -1,3 +1,43 @@
+body {
+  font-family: 'Roboto', sans-serif; }
+
+.navbar {
+  border-radius: 0; }
+
+.nav > li > a > img {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ffffff; }
+
+#navbar-right-dropdown {
+  padding: 10px; }
+
+#navbar-right-dropdown:hover {
+  animation: pulse 1s;
+  -webkit-animation: pulse 1s;
+  -moz-animation: pulse 1s; }
+
+.badge-not-zero {
+  background-color: #E74C3C;
+  color: #ffffff;
+  animation: pulse 1s infinite;
+  -webkit-animation: pulse 1s infinite;
+  -moz-animation: pulse 1s infinite; }
+
+#share-link {
+  padding-top: 8px; }
+  #share-link a {
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+    padding: 6px;
+    background-color: #E74C3C;
+    border-radius: 4px; }
+  #share-link a:hover {
+    animation: tada 1s;
+    -webkit-animation: tada 1s;
+    -moz-animation: tada 1s; }
+
 .form-control {
   height: 40px;
   padding-top: 6px;
@@ -24,6 +64,91 @@
   width: 270px;
   margin: 15px auto; }
 
+.sf-card {
+  background-color: #ffffff;
+  border-radius: 5px; }
+
+/***** user card *****/
+.user-card-banner {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative; }
+  .user-card-banner img {
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
+  .user-card-banner .user-setting-link {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 20px;
+    line-height: 1;
+    color: #BDC3C7; }
+
+.user-card-info {
+  position: relative; }
+  .user-card-info img {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #ffffff;
+    margin-top: -25px;
+    margin-left: 20px; }
+  .user-card-info .user-info-wrap {
+    position: absolute;
+    top: 30px;
+    left: 110px; }
+    .user-card-info .user-info-wrap .user-name a {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 26px;
+      color: #7F8C8D; }
+    .user-card-info .user-info-wrap .user-gender-location i {
+      font-size: 16px;
+      padding-right: 4px; }
+    .user-card-info .user-info-wrap .user-gender-location i.fa-user {
+      color: #3498DB; }
+    .user-card-info .user-info-wrap .user-gender-location i.fa-map-marker {
+      color: #E74C3C; }
+    .user-card-info .user-info-wrap .user-gender-location span {
+      padding-right: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #BDC3C7; }
+  .user-card-info .user-profile {
+    padding-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 18px;
+    color: #BDC3C7; }
+  .user-card-info ul {
+    margin: 0;
+    background-color: #ECF0F1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; }
+    .user-card-info ul li {
+      padding: 0;
+      width: 32%; }
+      .user-card-info ul li a {
+        display: block;
+        text-align: center;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        color: #7F8C8D; }
+        .user-card-info ul li a span {
+          display: block; }
+        .user-card-info ul li a .user-feed-count {
+          font-size: 15px;
+          font-weight: 500; }
+        .user-card-info ul li a .user-feed-title {
+          font-size: 13px;
+          font-weight: 300; }
+    .user-card-info ul li:nth-child(2) {
+      border-left: 1px solid #ECF0F1;
+      border-right: 1px solid #ECF0F1; }
+
 .td-error {
   font-size: 13px;
   font-weight: 500;
@@ -32,29 +157,39 @@
   margin-top: 5px;
   margin-bottom: 5px; }
 
+.td-success {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  color: #1ABC9C;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
 .spinner-wrap {
   position: fixed;
   height: 80px;
   width: 80px;
-  top: 33%;
+  top: 30%;
   left: 50%;
   margin-left: -40px;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1000;
-  border-radius: 100%;
+  border-radius: 50%;
   display: none; }
 
 .spinner-show {
   display: block;
-  animation-name: bounceInDown;
-  -webkit-animation-name: bounceInDown; }
+  -webkit-animation: bounceInDown 0.5s;
+  animation: bounceInDown 0.5s; }
 
 .spinner-wrap img {
   margin: 21px 0 0 21px;
   -webkit-animation: loading 2s linear;
   animation: loading 2s linear;
   animation-fill-mode: forwords;
-  -webkit-animation-fill-mode: forwards; }
+  -webkit-animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite; }
 
 @-webkit-keyframes loading {
   100% {
@@ -80,7 +215,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: url('../images/welcome-bg.jpg'); }
+  background: url('../images/welcome-bg.jpg');
+  overflow: scroll; }
+
+.home-wrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #cccccc; }
 
 .forget-link {
   padding-top: 10px;

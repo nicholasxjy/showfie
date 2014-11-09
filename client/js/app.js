@@ -10,6 +10,7 @@
  */
 angular
   .module('showfieApp', [
+    'ngAnimate',
     'ui.router',
     'app.services',
     'app.controllers'
