@@ -42,4 +42,8 @@ angular
           templateUrl: 'views/child/home.html',
           controller: 'HomeController'
         })
+        .state('feeddetail', {
+          url: '/feed/:id',
+          templateUrl: 'views/child/feed-detail.html'
+        })
   }]);

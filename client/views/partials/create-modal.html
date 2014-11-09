@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true" id="create-feed-modal">
+  aria-labelledby="myModalLabel" aria-hidden="true" id="create-feed-modal" ng-controller="CreateFeedController">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,8 +8,19 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <textarea class="form-control" rows="4" placeholder="what's new..."></textarea>
+          <textarea class="form-control" rows="4" placeholder="what's new..." ng-model="feed.content"></textarea>
         </div>
+      </div>
+      <div class="attach-wrap" ng-show="selectedFiles != null">
+        <ul class="list-inline" ng-if="dataUrls.length > 0">
+          <li ng-repeat="f in selectedFiles">
+            <img ng-src="{{dataUrls[$index]}}" alt="" ng-show="dataUrls[$index]" class="img-responsive img-rounded">
+          </li>
+        </ul>
+        <div class="attach-info-wrap" ng-if="!dataUrls || dataUrls.length <= 0">
+          <p ng-repeat="f in selectedFiles">{{f.name}}</p>
+        </div>
+        <a ng-click="cancelAttach()" id="cancel-attach-link"><i class="fa fa-close"></i></a>
       </div>
       <div class="modal-footer">
         <ul class="list-inline" id="create-action-list">
@@ -17,23 +28,29 @@
             <a><i class="fa fa-camera"></i>photo
             </a>
             <div class="attach-selector">
-              <input type="file" ng-file-select="onImageSelect($files)" accept="image/*">
+              <input type="file" ng-file-select="onImageSelect($files)" accept="image/*"
+              ng-disabled="photoDisable">
             </div>
           </li>
           <li>
             <a><i class="fa fa-video-camera"></i>video</a>
             <div class="attach-selector">
-              <input type="file" ng-file-select="onVideoSelect($files)" accept="video/*">
+              <input type="file" ng-file-select="onVideoSelect($files)" accept="video/*"
+              ng-disabled="videoDisable">
             </div>
           </li>
           <li>
             <a><i class="fa fa-microphone"></i>audio</a>
             <div class="attach-selector">
-              <input type="file" ng-file-select="onAudioSelect($files)" accept="audio/*">
+              <input type="file" ng-file-select="onAudioSelect($files)" accept="audio/*"
+              ng-disabled="audioDisable">
             </div>
           </li>
           <li>
-            <a id="share-link"><i class="fa fa-share-square-o"></i>Share</a>
+            <button id="share-link" ng-click="submitNewFeed(feed)" ng-disabled=" (!feed.content && !hasAttachment)">
+              <i class="fa fa-share-square-o"></i>
+              Share
+            </button>
           </li>
         </ul>
       </div>

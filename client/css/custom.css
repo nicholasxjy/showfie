@@ -75,7 +75,11 @@ body {
   .modal-footer #share-link {
     background-color: #1ABC9C;
     border-radius: 4px;
-    color: #ffffff; }
+    color: #ffffff;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 14px; }
 
 #create-action-list {
   margin-bottom: 0;
@@ -125,6 +129,25 @@ body {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0); }
+
+.attach-wrap {
+  background-color: #ECF0F1;
+  position: relative; }
+  .attach-wrap .list-inline {
+    margin: 0;
+    padding: 5px 5px 8px 15px; }
+  .attach-wrap li img {
+    height: 90px; }
+  .attach-wrap p {
+    margin: 0;
+    padding: 5px 5px 8px 15px; }
+  .attach-wrap #cancel-attach-link {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 26px;
+    line-height: 1;
+    color: #E74C3C; }
 
 .auth-wrap {
   width: 716px;
@@ -233,6 +256,10 @@ body {
   border-radius: 5px;
   margin-bottom: 20px; }
 
+.sf-feed-wrap:hover {
+  cursor: pointer;
+  background-color: #ECF0F1; }
+
 .feed-attach-wrap {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -249,6 +276,9 @@ body {
 
 .feed-author-top {
   position: relative; }
+  .feed-author-top a {
+    display: block;
+    width: 50px; }
   .feed-author-top img {
     width: 50px;
     height: 50px; }
@@ -353,7 +383,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #cccccc; }
+  background-color: #cccccc;
+  overflow-x: hidden; }
 
 .forget-link {
   padding-top: 10px;
