@@ -11,6 +11,7 @@
 angular
   .module('showfieApp', [
     'ngAnimate',
+    'angularFileUpload',
     'ui.router',
     'app.services',
     'app.controllers'

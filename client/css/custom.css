@@ -48,6 +48,84 @@ body {
 .btn {
   padding: 8px 12px; }
 
+.modal-header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  font-style: italic; }
+
+.modal-dialog {
+  width: 500px;
+  margin-top: 200px; }
+
+.modal-body {
+  padding-bottom: 5px;
+  background-color: #ECF0F1; }
+  .modal-body .form-group {
+    margin-bottom: 5px; }
+
+.modal-footer {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  border: none;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: #ECF0F1;
+  text-align: left; }
+  .modal-footer #share-link {
+    background-color: #1ABC9C;
+    border-radius: 4px;
+    color: #ffffff; }
+
+#create-action-list {
+  margin-bottom: 0;
+  margin-left: 5px;
+  position: relative; }
+  #create-action-list li {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    margin-right: 5px;
+    border: 1px solid #ECF0F1;
+    border-radius: 5px; }
+    #create-action-list li a {
+      display: block;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 300;
+      color: #34495E;
+      cursor: pointer; }
+      #create-action-list li a .fa {
+        font-size: 16px;
+        padding-right: 5px; }
+  #create-action-list li:hover {
+    border-color: #7F8C8D; }
+  #create-action-list li:last-child {
+    position: absolute;
+    right: 10px;
+    border: none; }
+
+/**** create feed selector ****/
+.attach-selector {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  overflow: hidden; }
+  .attach-selector input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0); }
+
 .auth-wrap {
   width: 716px;
   height: 455px;
@@ -148,6 +226,57 @@ body {
     .user-card-info ul li:nth-child(2) {
       border-left: 1px solid #ECF0F1;
       border-right: 1px solid #ECF0F1; }
+
+/******* feed style ******/
+.sf-feed-wrap {
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-bottom: 20px; }
+
+.feed-attach-wrap {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  min-height: 253px;
+  max-height: 315px;
+  overflow: hidden; }
+  .feed-attach-wrap img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in; }
+
+.feed-author-top {
+  position: relative; }
+  .feed-author-top img {
+    width: 50px;
+    height: 50px; }
+  .feed-author-top .feed-author-info {
+    position: absolute;
+    top: 5px;
+    left: 60px; }
+    .feed-author-top .feed-author-info .author-name a {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: #34495E; }
+    .feed-author-top .feed-author-info .feed-time {
+      font-size: 12px;
+      font-weight: 300;
+      color: #7F8C8D; }
+
+.feed-action-wrap {
+  padding-left: 5px; }
+  .feed-action-wrap a {
+    font-size: 16px;
+    font-weight: 300;
+    color: #34495E; }
+  .feed-action-wrap .feed-count {
+    font-size: 13px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-right: 15px; }
 
 .td-error {
   font-size: 13px;
