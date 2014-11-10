@@ -4,13 +4,19 @@
     .module('app.controllers')
     .controller('HomeController', [
       '$scope',
+      'UserService',
       'FeedService',
       '$state',
       homeCtrl
     ]);
-    function homeCtrl($scope, FeedService, $state) {
-      loadFeeds(1);
-
+    function homeCtrl($scope, UserService, FeedService, $state) {
+      UserService.getCurrentUser()
+        .then(function(resUser) {
+          if (resUser.user) {
+            $scope.user = resUser.user;
+            loadFeeds(1);
+          };
+        })
       $scope.$on('feed:new', function(evt) {
         loadFeeds(1);
       });

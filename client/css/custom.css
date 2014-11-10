@@ -328,11 +328,11 @@ body {
   position: fixed;
   height: 80px;
   width: 80px;
-  top: 30%;
+  top: 40%;
   left: 50%;
   margin-left: -40px;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
+  z-index: 3000;
   border-radius: 50%;
   display: none; }
 

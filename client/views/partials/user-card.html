@@ -2,23 +2,23 @@
     <div class="user-card">
         <div class="user-card-banner">
             <img src="images/banner.jpeg" class="img-responsive">
-            <a ui-sref="setting" class="user-setting-link"><i class="fa fa-gear"></i></a>
+            <a ui-sref="#/setting" class="user-setting-link"><i class="fa fa-gear"></i></a>
         </div>
         <div class="user-card-info">
             <img src="images/default.jpg" class="img-responsive img-circle">
             <div class="user-info-wrap">
                 <div class="user-name">
-                 <a href="#">Nicholas Xue</a>
+                 <a href="#">{{user.username}}</a>
                 </div>
                 <div class="user-gender-location">
                     <i class="fa fa-user"></i>
-                    <span>Secret</span>
+                    <span>{{user.gender}}</span>
                     <i class="fa fa-map-marker"></i>
-                    <span>Other</span>
+                    <span>{{user.location}}</span>
                 </div>
             </div>
             <div class="user-profile">
-                Not set profile yet!
+                {{user.profile}}
             </div>
             <ul class="list-inline">
                 <li>

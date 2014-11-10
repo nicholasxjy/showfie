@@ -8,6 +8,7 @@ var route = function(app) {
   app.post('/signup', userApi.signUp);
   app.post('/login', userApi.login);
   app.post('/forgetpass', userApi.requestPasswordReset);
+  app.get('/currentuser', userApi.getCurrentUser);
   app.post('/feed/create', feedApi.create);
   app.get('/feed/all', feedApi.getAll);
 }

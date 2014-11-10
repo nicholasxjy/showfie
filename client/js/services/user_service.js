@@ -8,7 +8,8 @@
         var userService = {
           signUp: signUp,
           login: login,
-          requestPasswordReset: requestPasswordReset
+          requestPasswordReset: requestPasswordReset,
+          getCurrentUser: getCurrentUser
         };
         return userService;
 
@@ -23,6 +24,10 @@
 
         function requestPasswordReset(info) {
           return $http.post('/forgetpass', info);
+        }
+
+        function getCurrentUser() {
+          return $http.get('/currentuser');
         }
       }
     ]);

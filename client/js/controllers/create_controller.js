@@ -17,6 +17,7 @@
       $scope.audioDisable = false;
 
       $scope.submitNewFeed = function(feedInfo) {
+        $scope.spinnerShow = true;
         $scope.content = feedInfo.content || '';
         var file;
         if ($scope.selectedFiles && $scope.selectedFiles.length > 0) {
@@ -26,8 +27,13 @@
           url: '/feed/create',
           data: {content: $scope.content},
           file: file
-        }).success(function(res) {
+        })
+        .progress(function(evt) {
+          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        })
+        .success(function(res) {
           if (res.status === 'success') {
+            $scope.spinnerShow = false;
             //here reset all
             $scope.hasAttachment = false;
             $scope.photoDisable = false;
@@ -38,10 +44,8 @@
             $scope.dataUrls = null;
             //here stupid code
             $('#create-feed-modal').modal('hide');
-            $timeout(function() {
-              $scope.$emit('feed:new');
-              $state.go('home');
-            }, 1000);
+            $scope.$emit('feed:new');
+            $state.go('home');
           }
         })
       };

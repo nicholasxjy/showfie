@@ -1,35 +1,50 @@
 var AV = require('avoscloud-sdk').AV;
 var config = require('../../config');
 var async = require('async');
+var fs = require('fs');
 
 exports.create = function(req, res, next) {
   var info = req.body;
   var attachFile = req.files.file || null;
   console.log(attachFile);
+  // var Showfier = AV.User.extend('Showfier');
   var currentUser = AV.User.current();
   var Feed = AV.Object.extend('Feed');
   var feed = new Feed();
   feed.set('author', currentUser);
   feed.set('content', info.content);
   if (attachFile) {
-    var file = new AV.File(attachFile.originalname, attachFile.buffer);
-    file.save()
-      .then(function() {
-        if (attachFile.mimetype.indexOf('image') > -1) {
-          feed.set('photo', file);
-        }
-        if (attachFile.mimetype.indexOf('video') > -1) {
-          feed.set('video', file);
-        }
-        if (attachFile.mimetype.indexOf('audio') > -1) {
-          feed.set('audio', file);
-        }
-        feed.save();
-        return res.json({status: 'success'});
-    }, function(error) {
-        console.log(error);
+    fs.readFile(attachFile.path, function(err, data) {
+      if (err) next(err);
+      var base64Data = data.toString('base64');
+      var file = new AV.File(attachFile.originalname, {base64: base64Data});
+      file.save()
+        .then(function(newFile) {
+          if (attachFile.mimetype.indexOf('image') > -1) {
+            feed.set('photo', newFile);
+          }
+          if (attachFile.mimetype.indexOf('video') > -1) {
+            feed.set('video', newFile);
+          }
+          if (attachFile.mimetype.indexOf('audio') > -1) {
+            feed.set('audio', newFile);
+          }
+          feed.save();
+          return res.json({status: 'success'});
+      }, function(error) {
+          console.log(error);
+          return res.json({status: 'fail'});
+      })
+    });
+  } else {
+    feed.save(null, {
+      success: function(newfeed) {
+        return res.json({status: 'scuccess'});
+      },
+      error: function(newfeed, error) {
         return res.json({status: 'fail'});
-    })
+      }
+    });
   }
 };
 

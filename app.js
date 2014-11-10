@@ -5,8 +5,16 @@ var path = require('path');
 var route = require('./route');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var cookieParser = require('cookie-parser');
+var avosExpressCookieSession = require('avos-express-cookie-session');
+var middleware = require('./server/middleware');
 var app = express();
 
+// here init avoscloud app
+app.use(function(req, res, next) {
+  AV.initialize(config.appID, config.appKey, config.masterKey);
+  next();
+});
 //body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -16,15 +24,17 @@ app.set('views', path.join(__dirname, 'client/views'));
 app.set('view engine', 'html');
 app.engine('.html', require('ejs').renderFile);
 
-app.use(multer({
-  inMemory: true
+app.use(multer({}));
+app.use(cookieParser(config.secret));
+app.use(avosExpressCookieSession({
+  cookie: {
+    maxAge: config.cookieMaxAge
+  },
+  key: 'showfie'
 }));
+//middleware here
+// app.use(middleware.authUser);
 
-// here init avoscloud app
-app.use(function(req, res, next) {
-  AV.initialize(config.appID, config.appKey, config.masterKey);
-  next();
-});
 
 //route here
 route(app);
