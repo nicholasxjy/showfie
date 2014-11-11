@@ -6,7 +6,7 @@ var route = require('./route');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
-var avosExpressCookieSession = require('avos-express-cookie-session');
+var session = require('express-session');
 var middleware = require('./server/middleware');
 var app = express();
 
@@ -26,14 +26,14 @@ app.engine('.html', require('ejs').renderFile);
 
 app.use(multer({}));
 app.use(cookieParser(config.secret));
-app.use(avosExpressCookieSession({
-  cookie: {
-    maxAge: config.cookieMaxAge
-  },
-  key: 'showfie'
+app.use(session({
+  name: 'showfie.sid',
+  secret: config.session_secret,
+  resave: true,
+  saveUninitialized: true
 }));
 //middleware here
-// app.use(middleware.authUser);
+app.use(middleware.authUser);
 
 
 //route here
@@ -41,6 +41,7 @@ route(app);
 
 //static
 app.use(express.static(path.join(__dirname, 'client')));
+
 //catch 404 error
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,4 +1,6 @@
 var AV = require('avoscloud-sdk').AV;
+var crypto = require('../utility');
+var config = require('../../config');
 
 exports.signUp = function(req, res, next) {
   var signUpInfo = req.body;
@@ -28,6 +30,11 @@ exports.login = function(req, res, next) {
   // var Showfier = AV.User.extend('Showfier');
   AV.User.logIn(loginInfo.username, loginInfo.password, {
     success: function(user) {
+      var userInfo = user.toJSON();
+      var cookieToken = crypto.encryt(userInfo.objectId, config.session_secret);
+      res.cookie(config.cookieName, cookieToken, {path: '/', maxAge: config.cookieMaxAge});
+      var sess = req.session;
+      sess.user = user;
       return res.json({status: 'success', data: user});
     },
     error: function(user, error) {
@@ -53,12 +60,21 @@ exports.requestPasswordReset = function(req, res, next) {
 };
 
 exports.getCurrentUser = function(req, res, next) {
-  // var Showfier = AV.User.extend('Showfier');
-  console.log(AV.User.current());
-  if (AV.User.current()) {
-    var user = AV.User.current();
-    return res.json({user: user});
-  } else {
-    return res.json({});
+  var sess = req.session;
+  console.log(sess);
+  if (sess && sess.user) {
+    var userid = sess.user.id;
+    var query = new AV.Query(AV.User);
+    query.equalTo('objectId', userid);
+    query.find({
+      success: function(users) {
+        if (users && users.length > 0) {
+          return res.json({status: 'success', data: users[0]});
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
   }
 }

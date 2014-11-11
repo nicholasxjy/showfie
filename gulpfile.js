@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var scss = require('gulp-sass');
+// var livereload = require('gulp-livereload');
 
 var paths = {
   sass: './client/scss/*.scss',

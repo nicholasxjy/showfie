@@ -1,5 +1,6 @@
 var userApi = require('./server/api/user');
 var feedApi = require('./server/api/feed');
+var AV = require('avoscloud-sdk').AV;
 
 var route = function(app) {
   app.get('/', function(req, res) {
