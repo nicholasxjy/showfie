@@ -13,3 +13,10 @@ exports.decryt = function(str, secret) {
   destr += decipher.final('utf8');
   return destr;
 }
+
+exports.md5Encryt = function(str) {
+  var md5Hash = crypto.createHash('md5');
+  md5Hash.update(str);
+  str = md5Hash.digest('hex');
+  return str;
+}

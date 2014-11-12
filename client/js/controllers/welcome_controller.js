@@ -19,10 +19,10 @@
               $scope.spinnerShow = false;
               console.log(resInfo);
               if (resInfo.status === 'success') {
-                $state.go('home');
+                $state.go('login');
               } else {
                 $scope.hasError = true;
-                $scope.errorMessage = resInfo.data.message;
+                $scope.errorMessage = resInfo.error;
               }
             }, 1500);
           })

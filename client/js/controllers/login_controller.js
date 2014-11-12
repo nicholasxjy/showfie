@@ -22,7 +22,7 @@
           } else {
             console.log(res);
             $scope.hasError = true;
-            $scope.errorMessage = res.data.message;
+            $scope.errorMessage = res.error;
           }
         })
         .error(function(error) {
