@@ -14,23 +14,23 @@
               <a href="#">{{feed.author.username}}</a>
             </div>
             <div class="feed-time">
-              {{feed.feed.createdAt | date: 'MM-dd hh:ss'}}
+              {{feed.createdAt | date: 'MM-dd hh:ss'}}
             </div>
           </div>
         </div>
       </div>
       <div class="feed-content">
-        <p>{{feed.feed.content}}</p>
+        <p>{{feed.content}}</p>
       </div>
       <div class="feed-action-wrap">
         <ul class="list-inline">
           <li>
             <a href="#"><i class="fa fa-heart-o"></i></a>
-            <span class="feed-count">123</span>
+            <span class="feed-count">{{feed.likes.length}}</span>
           </li>
           <li>
             <a href="#"><i class="fa fa-comment-o"></i></a>
-            <span class="feed-count">23</span>
+            <span class="feed-count">{{feed.comments.length}}</span>
           </li>
         </ul>
       </div>
