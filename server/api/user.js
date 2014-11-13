@@ -1,80 +1,104 @@
-var AV = require('avoscloud-sdk').AV;
 var crypto = require('../utility');
 var config = require('../../config');
+var validator = require('validator');
+var userQuery = require('../proxy/user');
 
 exports.signUp = function(req, res, next) {
-  var signUpInfo = req.body;
-  //here subclass user
-  // var Showfier = AV.User.extend('Showfier');
-  // var newShowfier = new Showfier();
-  var newShowfier = new AV.User();
-  newShowfier.set('username', signUpInfo.username);
-  newShowfier.set('email', signUpInfo.email);
-  newShowfier.set('password', signUpInfo.password);
-  //this info set default when new user sign up
-  newShowfier.set('location', 'other');
-  newShowfier.set('gender', 'secret');
-  newShowfier.set('profile', 'Not set profile yet!');
-  newShowfier.signUp(null, {
-    success: function(user) {
-      return res.json({status: 'success', data: user});
-    },
-    error: function(user, error) {
-      return res.json({status: 'fail', data: error});
+  var username = req.body.username;
+  var email = req.body.email;
+  var password = req.body.password;
+  if (username === '' || email === '' || password === '') {
+    return res.json({
+      status: 'fail',
+      error: '信息不完整'
+    });
+  }
+  if (!validator.isAlphanumeric(username)) {
+    return res.json({
+      status: 'fail',
+      error: '用户名只允许字母和数字'
+    });
+  }
+  if (!validator.isEmail(email)) {
+    return res.json({
+      status: 'fail',
+      error: '请填写正确的邮箱地址'
+    });
+  }
+
+  if (!validator.isAlphanumeric(password)) {
+    return res.json({
+      status: 'fail',
+      error: '密码只允许字母和数字'
+    });
+  }
+  userQuery.getUsersByQuery({
+    '$or': [{
+      'username': username
+    }, {
+      'email': email
+    }]
+  }, null, null, function(err, users) {
+    if (err) return next(err);
+    if (users && users.length > 0) {
+      return res.json({
+        status: 'fail',
+        error: '用户名或邮箱已被使用'
+      });
     }
-  });
+    //encryt password
+    password = crypto.md5Encryt(password);
+    userQuery.create(username, email, password, function(err, newUser) {
+      if (err) return next(err);
+      //发送邮件 注册成功
+
+
+      return res.json({
+        status: 'success'
+      });
+    })
+  })
 };
 
 exports.login = function(req, res, next) {
-  var loginInfo = req.body;
-  // var Showfier = AV.User.extend('Showfier');
-  AV.User.logIn(loginInfo.username, loginInfo.password, {
-    success: function(user) {
-      var userInfo = user.toJSON();
-      var cookieToken = crypto.encryt(userInfo.objectId, config.session_secret);
-      res.cookie(config.cookieName, cookieToken, {path: '/', maxAge: config.cookieMaxAge});
-      var sess = req.session;
-      sess.user = user;
-      return res.json({status: 'success', data: user});
-    },
-    error: function(user, error) {
-      return res.json({status: 'fail', data: error});
+  var username = req.body.username;
+  var password = req.body.password;
+  if (username === '' || password === '') {
+    return res.json({
+      status: 'fail',
+      error: '请填写用户名和密码'
+    });
+  }
+  userQuery.getUserByName(username, true, function(err, user) {
+    console.log(user);
+    if (err) return next(err);
+    if (!user) return res.json({status: 'fail', error: '该用户不存在!'});
+    password = crypto.md5Encryt(password);
+    if (password !== user.password) {
+      return res.json({status: 'fail', error: '密码错误'});
     }
-  })
+    var cookieToken = crypto.encryt(user._id + '||' + user.username + '||' + user.email, config.cookie_secret);
+    res.cookie(config.cookieName, cookieToken, {path: '/', maxAge: config.cookieMaxAge});
+    var sess = req.session;
+    sess.user = user;
+    return res.json({status: 'success'});
+  });
 };
 
 exports.requestPasswordReset = function(req, res, next) {
   var info = req.body;
-  // var Showfier = AV.User.extend('Showfier');
-  AV.User.requestPasswordReset(info.email, {
-    success: function() {
-      return res.json({
-        status: 'success',
-        data: {message: '重置密码的邮件已发送到您的邮箱，请点击里面的链接以重置密码。'}
-      });
-    },
-    error: function(error) {
-      return res.json({status: 'fail', data: error});
-    }
-  })
+
 };
 
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;
-  console.log(sess);
   if (sess && sess.user) {
-    var userid = sess.user.id;
-    var query = new AV.Query(AV.User);
-    query.equalTo('objectId', userid);
-    query.find({
-      success: function(users) {
-        if (users && users.length > 0) {
-          return res.json({status: 'success', data: users[0]});
-        }
-      },
-      error: function(error) {
-        console.log(error);
-      }
+    userQuery.getUserById(sess.user._id, function(err, user) {
+      if (err) return next(err);
+      return res.json({status:'success', data: user});
     });
+  } else {
+    return res.json({});
   }
+
 }
