@@ -18,7 +18,11 @@
 
       $scope.submitNewFeed = function(feedInfo) {
         $scope.spinnerShow = true;
-        $scope.content = feedInfo.content || '';
+        if (feedInfo && feedInfo.content) {
+          $scope.content = feedInfo.content;
+        } else {
+          $scope.content = '';
+        }
         var file;
         if ($scope.selectedFiles && $scope.selectedFiles.length > 0) {
           file = $scope.selectedFiles[0];
@@ -32,6 +36,7 @@
           console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
         })
         .success(function(res) {
+          console.log(res);
           if (res.status === 'success') {
             $scope.spinnerShow = false;
             //here reset all

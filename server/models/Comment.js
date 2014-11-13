@@ -24,7 +24,8 @@ var CommentSchema = new Schema({
     default: Date.now
   },
   updatedAt: {
-    type: Date
+    type: Date,
+    default: Date.now
   }
 });
 mongoose.model('Comment', CommentSchema);

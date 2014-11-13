@@ -23,6 +23,7 @@
     "express-session": "^1.9.1",
     "mongoose": "^3.8.19",
     "multer": "^0.1.6",
+    "qn": "^1.0.1",
     "validator": "^3.22.1"
   },
   "devDependencies": {
