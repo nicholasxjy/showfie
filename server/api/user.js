@@ -69,7 +69,8 @@ exports.login = function(req, res, next) {
       error: '请填写用户名和密码'
     });
   }
-  userQuery.getUserByName(username, function(err, user) {
+  userQuery.getUserByName(username, true, function(err, user) {
+    console.log(user);
     if (err) return next(err);
     if (!user) return res.json({status: 'fail', error: '该用户不存在!'});
     password = crypto.md5Encryt(password);
@@ -78,6 +79,8 @@ exports.login = function(req, res, next) {
     }
     var cookieToken = crypto.encryt(user._id + '||' + user.username + '||' + user.email, config.cookie_secret);
     res.cookie(config.cookieName, cookieToken, {path: '/', maxAge: config.cookieMaxAge});
+    var sess = req.session;
+    sess.user = user;
     return res.json({status: 'success'});
   });
 };
@@ -90,7 +93,10 @@ exports.requestPasswordReset = function(req, res, next) {
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;
   if (sess && sess.user) {
-    return res.json({status:'success', data: sess.user});
+    userQuery.getUserById(sess.user._id, function(err, user) {
+      if (err) return next(err);
+      return res.json({status:'success', data: user});
+    });
   } else {
     return res.json({});
   }

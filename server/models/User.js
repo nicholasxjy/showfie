@@ -13,7 +13,8 @@ var UserSchema = new Schema({
     unique: true
   },
   password: {
-    type: String
+    type: String,
+    select: false
   },
   gender: {
     type: String,
@@ -31,6 +32,14 @@ var UserSchema = new Schema({
     type: String,
     default: config.profile
   },
+  followers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  followings: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

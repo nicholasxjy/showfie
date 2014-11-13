@@ -12,6 +12,7 @@
     function homeCtrl($scope, UserService, FeedService, $state) {
       UserService.getCurrentUser()
         .then(function(resUser) {
+          console.log(resUser);
           if (resUser.status === 200 && resUser.data) {
             $scope.user = resUser.data.data;
             loadFeeds(1);

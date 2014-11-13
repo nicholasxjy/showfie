@@ -11,7 +11,7 @@ var route = function(app) {
   // app.post('/forgetpass', userApi.requestPasswordReset);
   app.get('/currentuser', userApi.getCurrentUser);
   // app.post('/feed/create', feedApi.create);
-  // app.get('/feed/all', feedApi.getAll);
+  app.get('/feed/all', feedApi.getAll);
 }
 
 module.exports = route;
