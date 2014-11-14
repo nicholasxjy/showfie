@@ -44,7 +44,7 @@
             $scope.photoDisable = false;
             $scope.videoDisable = false;
             $scope.audioDisable = false;
-            $scope.feed.content = '';
+            $scope.content = '';
             $scope.selectedFiles = null;
             $scope.dataUrls = null;
             //here stupid code

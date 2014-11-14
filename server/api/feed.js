@@ -3,7 +3,7 @@ var async = require('async');
 var fs = require('fs');
 var feedQuery = require('../proxy/feed');
 var fileQuery = require('../proxy/file');
-var qn = require('qn');
+var qiniuService = require('../services/qiniu');
 
 exports.create = function(req, res, next) {
   var user = req.session.user;
@@ -13,27 +13,21 @@ exports.create = function(req, res, next) {
     return res.json({status: 'fail', error: 'login first!'});
   }
   if (attachFile) {
-    console.log(attachFile);
     async.waterfall([
         function(cb1) {
           //upload file
-          var client = qn.create({
-            accessKey: config.qiniuAccesskey,
-            secretkey: config.qiniuSecretkey,
-            bucket: config.qiniuBucket,
-            domain: config.qiniuDomain
-          });
-          client.uploadFile(attachFile.path, {key: attachFile.originalname}, function(err, fileInfo) {
+          //there use qiniu sdk
+          var uptoken = qiniuService.generateUpToken(config.qiniuBucket);
+          qiniuService.uploadFileLocalFile(attachFile.path, attachFile.originalname, uptoken, null, function(err, fileInfo) {
             if (fileInfo) {
-              console.log(fileInfo);
               fileInfo.mimetype = attachFile.mimetype;
-              if (attachFile.mimetype.indexOf('image') > 0) {
+              if (attachFile.mimetype.indexOf('image') > -1) {
                 fileInfo.type = 'image';
               }
-              if (attachFile.mimetype.indexOf('audio') > 0) {
+              if (attachFile.mimetype.indexOf('audio') > -1) {
                 fileInfo.type = 'audio';
               }
-              if (attachFile.mimetype.indexOf('video') > 0) {
+              if (attachFile.mimetype.indexOf('video') > -1) {
                 fileInfo.type = 'video';
               }
               fileQuery.create(fileInfo, function(err, file) {
@@ -43,7 +37,7 @@ exports.create = function(req, res, next) {
             } else {
               cb1(new Error('qiniu upload error'));
             }
-          })
+          });
         },
         function(file, cb2) {
           if (file) {

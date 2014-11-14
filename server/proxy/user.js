@@ -23,4 +23,8 @@ exports.getUserByName = function(name, hasPass, cb) {
 
 exports.getUserById = function(id, cb) {
   User.findById(id, cb);
-}
+};
+
+exports.getUserByEmail =  function(email, cb) {
+  User.findOne({email: email}, cb);
+};

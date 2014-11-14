@@ -50,9 +50,6 @@ exports.signUp = function(req, res, next) {
     password = crypto.md5Encryt(password);
     userQuery.create(username, email, password, function(err, newUser) {
       if (err) return next(err);
-      //发送邮件 注册成功
-
-
       return res.json({
         status: 'success'
       });
@@ -86,8 +83,64 @@ exports.login = function(req, res, next) {
 };
 
 exports.requestPasswordReset = function(req, res, next) {
-  var info = req.body;
+  var email = req.body.email;
+  if (!validator.isEmail(email)) {
+    return res.json({
+      status: 'fail',
+      error: '请填写正确的邮箱地址'
+    });
+  }
+  userQuery.findUserByEmail(email, function(err, user) {
+    if (err) return next(err);
+    if (!user) {
+      return res.json({
+        status: 'fail',
+        error: '没有该邮箱的用户!'
+      });
+    }
+    //send an email to make user reset their password
+    var forgetKey = crypto.randomString(15);
+    user.forgetkey = forgetKey;
+    user.save(function(err) {
+      if (err) return next(err);
+      crypto.sendResetPassMail(user.email, forgetKey, user.username);
+      return res.json({
+        status: 'success',
+        data: '我们给你的邮箱发送一封重置密码的邮件，请点击里面的连接以重置密码。'
+      });
+    });
+  });
+};
+exports.resetPass = function(req, res, next) {
+  var name = req.body.name;
+  var key = req.body.key;
+  var password = req.body.password;
+  var repassword = req.body.repassword;
 
+  if (password !== repassword) {
+    return res.json({
+      status: 'fail',
+      error: '两次密码不一致'
+    });
+  }
+  userQuery.getUserByName(name, function(err, user) {
+    if (err) return next(err);
+    if (!user || user.forgetkey !== key) {
+      return res.json({
+        status: 'fail',
+        error: '信息有误，无法重置密码。请重新请求重置密码!'
+      });
+    }
+    user.password = crypto.md5Encryt(password);
+    user.forgetkey = null;
+    user.save(function(err) {
+      if (err) return next(err);
+      return res.json({
+        status: 'success',
+        data: '重置密码成功，请重新登录'
+      });
+    });
+  });
 };
 
 exports.getCurrentUser = function(req, res, next) {
