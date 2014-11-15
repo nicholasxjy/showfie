@@ -21,3 +21,7 @@ exports.getFeedsByQuery = function (query, fields, opts, cb) {
     Feed.populate(feeds, options, cb);
   });
 };
+
+exports.getFeedsCountByUserId = function(userid, cb) {
+  Feed.count({author: userid}, cb);
+};

@@ -24,6 +24,10 @@ var UserSchema = new Schema({
     type: String,
     default: config.avatar
   },
+  banner: {
+    type: String,
+    default: config.banner
+  },
   location: {
     type: String,
     default: config.location

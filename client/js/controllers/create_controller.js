@@ -19,9 +19,9 @@
       $scope.submitNewFeed = function(feedInfo) {
         $scope.spinnerShow = true;
         if (feedInfo && feedInfo.content) {
-          $scope.content = feedInfo.content;
+          $scope.feed.content = feedInfo.content;
         } else {
-          $scope.content = '';
+          $scope.feed.content = '';
         }
         var file;
         if ($scope.selectedFiles && $scope.selectedFiles.length > 0) {
@@ -29,14 +29,10 @@
         }
         $upload.upload({
           url: '/feed/create',
-          data: {content: $scope.content},
+          data: {content: $scope.feed.content},
           file: file
         })
-        .progress(function(evt) {
-          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        })
         .success(function(res) {
-          console.log(res);
           if (res.status === 'success') {
             $scope.spinnerShow = false;
             //here reset all
@@ -44,7 +40,7 @@
             $scope.photoDisable = false;
             $scope.videoDisable = false;
             $scope.audioDisable = false;
-            $scope.content = '';
+            $scope.feed.content = '';
             $scope.selectedFiles = null;
             $scope.dataUrls = null;
             //here stupid code

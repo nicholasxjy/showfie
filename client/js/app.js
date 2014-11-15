@@ -37,6 +37,25 @@ angular
           templateUrl: 'views/child/forgetpass.html',
           controller: 'ForgetPassController'
         })
+        .state('settings', {
+          templateUrl: 'views/child/settings.html',
+          controller: 'SettingController'
+        })
+        .state('settings.profile', {
+          url:'/setting/profile',
+          templateUrl: 'views/partials/settings.profile.html',
+          controller: 'SetProfileController'
+        })
+        .state('settings.avatar', {
+          url: '/setting/avatar',
+          templateUrl: 'views/partials/settings.avatar.html',
+          controller: 'SetAvatarController'
+        })
+        .state('settings.banner', {
+          url: 'setting/banner',
+          templateUrl: 'views/partials/settings.banner.html',
+          controller:'SetBannerController'
+        })
         .state('home', {
           url: '/home',
           templateUrl: 'views/child/home.html',
@@ -46,4 +65,5 @@ angular
           url: '/feed/:id',
           templateUrl: 'views/child/feed-detail.html'
         })
+
   }]);

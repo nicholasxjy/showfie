@@ -12,11 +12,13 @@
     function homeCtrl($scope, UserService, FeedService, $state) {
       UserService.getCurrentUser()
         .then(function(resUser) {
-          console.log(resUser);
           if (resUser.status === 200 && resUser.data) {
             $scope.user = resUser.data.data;
+            $scope.user.postcount = resUser.data.userpostcount;
             loadFeeds(1);
-          };
+          } else {
+            $state.go('login');
+          }
         })
       $scope.$on('feed:new', function(evt) {
         loadFeeds(1);

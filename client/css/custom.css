@@ -1,6 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif; }
 
+.sf-container {
+  padding-top: 80px; }
+
 .navbar {
   border-radius: 0; }
 
@@ -367,6 +370,10 @@ body {
     -ms-transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
+
+.form-wrap {
+  padding-left: 10px;
+  padding-right: 50px; }
 
 .welcome-wrap, .login-wrap, .forget-wrap {
   position: fixed;

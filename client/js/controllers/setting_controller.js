@@ -1,0 +1,22 @@
+'use strict';
+(function() {
+  angular
+    .module('app.controllers')
+    .controller('SettingController', [
+      '$scope',
+      'UserService',
+      settingCtrl
+    ]);
+
+  function settingCtrl($scope, UserService) {
+    UserService.getCurrentUser()
+      .then(function(resUser) {
+        if (resUser.status === 200 && resUser.data) {
+          $scope.user = resUser.data.data;
+          $scope.user.postcount = resUser.data.userpostcount;
+        } else {
+          $state.go('login');
+        }
+      });
+  }
+})();

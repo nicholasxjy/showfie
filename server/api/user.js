@@ -2,6 +2,7 @@ var crypto = require('../utility');
 var config = require('../../config');
 var validator = require('validator');
 var userQuery = require('../proxy/user');
+var feedQuery = require('../proxy/feed');
 
 exports.signUp = function(req, res, next) {
   var username = req.body.username;
@@ -148,10 +149,12 @@ exports.getCurrentUser = function(req, res, next) {
   if (sess && sess.user) {
     userQuery.getUserById(sess.user._id, function(err, user) {
       if (err) return next(err);
-      return res.json({status:'success', data: user});
+      feedQuery.getFeedsCountByUserId(user._id, function(err, count) {
+        if (err) return next(err);
+        return res.json({status:'success', data: user, userpostcount: count});
+      });
     });
   } else {
     return res.json({});
   }
-
 }
