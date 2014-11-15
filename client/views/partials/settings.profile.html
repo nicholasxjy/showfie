@@ -44,7 +44,7 @@
           <label for="location" class="col-sm-2 control-label">Location:</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="location" ng-model="updateUser.location"
-            placeholder="{{user.location}}">
+            placeholder="{{user.location}}" ng-maxlength="20">
             <p class="help-block">Tell us where you are!</p>
           </div>
         </div>
@@ -52,13 +52,14 @@
           <label for="profile" class="col-sm-2 control-label">Profile:</label>
           <div class="col-sm-10">
             <textarea id="profile" class="form-control" rows="4" ng-model="updateUser.profile"
-            placeholder="{{user.profile}}"></textarea>
+            placeholder="{{user.profile}}" ng-maxlength="100"></textarea>
             <p class="help-block">Make us know more about you!</p>
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-info">submit</button>
+            <span class="td-success">{{successMessage}}</span>
           </div>
         </div>
       </form>

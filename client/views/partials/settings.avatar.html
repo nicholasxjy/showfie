@@ -1,0 +1,20 @@
+<div class="profile-wrap panel panel-default">
+  <div class="panel-heading">
+    <h4>头像设置</h4>
+  </div>
+  <div class="panel-body">
+    <div class="avatar-wrap row">
+      <div class="col-md-8 col-md-offset-2">
+        <img ng-src="{{avatar || user.avatar}}" class="img-responsive img-rounded" id="image-container">
+        <div class="action-button-wrap">
+          <div class="select-button">
+            <span>选择图片</span>
+            <input type="file" id="file" accept="image/*" ng-file-select="onImageSelect($files)">
+          </div>
+          <button class="btn btn-success btn-block" ng-disabled="!selectedFiles" ng-click="uploadAvatar()">确定上传</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'views/partials/spinner.html'"></div>
+</div>

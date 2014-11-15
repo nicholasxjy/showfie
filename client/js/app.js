@@ -14,6 +14,7 @@ angular
     'angularFileUpload',
     'ui.router',
     'app.services',
+    'app.directives',
     'app.controllers'
   ])
   .config([
@@ -31,6 +32,10 @@ angular
           url: '/login',
           templateUrl: 'views/child/login.html',
           controller: 'LoginController'
+        })
+        .state('logout', {
+          url: '/logout',
+          controller: 'LogoutController'
         })
         .state('forgetpass', {
           url: '/forgetpass',
@@ -52,7 +57,7 @@ angular
           controller: 'SetAvatarController'
         })
         .state('settings.banner', {
-          url: 'setting/banner',
+          url: '/setting/banner',
           templateUrl: 'views/partials/settings.banner.html',
           controller:'SetBannerController'
         })

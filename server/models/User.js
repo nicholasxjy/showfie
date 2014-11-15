@@ -28,6 +28,10 @@ var UserSchema = new Schema({
     type: String,
     default: config.banner
   },
+  bannerblur: {
+    type: String,
+    default: config.bannerblur
+  },
   location: {
     type: String,
     default: config.location

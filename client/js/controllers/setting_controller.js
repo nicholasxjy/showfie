@@ -18,5 +18,8 @@
           $state.go('login');
         }
       });
+    $scope.$on('user:update', function(evt, newUser) {
+      $scope.user = newUser;
+    });
   }
 })();

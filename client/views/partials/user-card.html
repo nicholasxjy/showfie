@@ -1,11 +1,11 @@
 <div class="sf-card">
     <div class="user-card">
         <div class="user-card-banner">
-            <img src="images/banner.jpeg" class="img-responsive">
+            <img ng-src="{{user.banner}}" class="img-responsive">
             <a ui-sref="settings.profile" class="user-setting-link"><i class="fa fa-gear"></i></a>
         </div>
         <div class="user-card-info">
-            <img src="images/default.jpg" class="img-responsive img-circle">
+            <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
             <div class="user-info-wrap">
                 <div class="user-name">
                  <a href="#">{{user.username}}</a>

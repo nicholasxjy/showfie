@@ -3,6 +3,8 @@ var config = require('../../config');
 var validator = require('validator');
 var userQuery = require('../proxy/user');
 var feedQuery = require('../proxy/feed');
+var async = require('async');
+var qiniuService = require('../services/qiniu');
 
 exports.signUp = function(req, res, next) {
   var username = req.body.username;
@@ -82,6 +84,137 @@ exports.login = function(req, res, next) {
     return res.json({status: 'success'});
   });
 };
+
+exports.logout = function(req, res, next) {
+  console.log('logout');
+  req.session.destroy(function() {
+    res.clearCookie(config.cookieName, {path: '/'});
+    return res.json({status: 'success'});
+  });
+}
+
+exports.updateInfo = function(req, res, next) {
+  var sess = req.session;
+  if (!sess || !sess.user) {
+    return res.status(403).send({error:'login first'});
+  }
+  var info = req.body;
+  if (info) {
+    userQuery.getUserById(sess.user._id, function(err, user) {
+      if (err) return next(err);
+      for(var key in info) {
+        console.log(key);
+        user[key] = info[key]
+      }
+      user.save(function(err, newUser) {
+        if (err) return next(err);
+        return res.json({status: 'success', data: newUser});
+      });
+    });
+  }
+};
+
+exports.updateAvatar = function(req, res, next) {
+  var sess = req.session;
+  if (!sess || !sess.user) {
+    return res.status(403).send({
+      error: 'login first'
+    });
+  }
+  var avatarFile = req.files.file;
+  if (!avatarFile) {
+    return res.json({
+      status: 'fail',
+      error: '上传失败，请亲重新再试一次!'
+    });
+  }
+  async.waterfall([
+    function(cb1) {
+      userQuery.getUserById(sess.user._id, function(err, user) {
+        if (err) cb1(err);
+        cb1(null, user);
+      });
+    },
+    function(user, cb2) {
+      var uptoken = qiniuService.generateUpToken(config.qiniuBucket);
+      qiniuService.uploadFileLocalFile(avatarFile.path, avatarFile.originalname, uptoken, null, function(err, fileInfo) {
+        if (fileInfo) {
+          fileInfo.url = fileInfo.url + '?imageView2/5/w/96/h/96';
+          user.avatar = fileInfo.url;
+          user.save(function(err, newUser) {
+            if (err) cb2(err);
+            cb2(null, newUser);
+          });
+        } else {
+          cb2(new Error('qiniu upload error'));
+        }
+      });
+    }
+  ],
+  function(err, result) {
+    if (err) return next(err);
+    if (result) {
+      return res.json({
+        status: 'success',
+        data: result
+      });
+    } else {
+      return res.json({});
+    }
+  });
+};
+
+exports.updateBanner = function(req, res, next) {
+  var sess = req.session;
+  if (!sess || !sess.user) {
+    return res.status(403).send({
+      error: 'login first'
+    });
+  }
+  var bannerFile = req.files.file;
+  if (!bannerFile) {
+    return res.json({
+      status: 'fail',
+      error: '上传失败，请亲重新再试一次!'
+    });
+  }
+  async.waterfall([
+    function(cb1) {
+      userQuery.getUserById(sess.user._id, function(err, user) {
+        if (err) cb1(err);
+        cb1(null, user);
+      });
+    },
+    function(user, cb2) {
+      var uptoken = qiniuService.generateUpToken(config.qiniuBucket);
+      qiniuService.uploadFileLocalFile(bannerFile.path, bannerFile.originalname, uptoken, null, function(err, fileInfo) {
+        if (fileInfo) {
+          fileInfo.url = fileInfo.url;
+          user.banner = fileInfo.url;
+          user.bannerblur = fileInfo.url + '?imageMogr2/blur/50x20';
+          user.save(function(err, newUser) {
+            if (err) cb2(err);
+            cb2(null, newUser);
+          });
+        } else {
+          cb2(new Error('qiniu upload error'));
+        }
+      });
+    }
+  ],
+  function(err, result) {
+    if (err) return next(err);
+    if (result) {
+      return res.json({
+        status: 'success',
+        data: result
+      });
+    } else {
+      return res.json({});
+    }
+  });
+}
+
 
 exports.requestPasswordReset = function(req, res, next) {
   var email = req.body.email;
