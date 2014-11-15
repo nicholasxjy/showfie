@@ -22,11 +22,12 @@
         })
       $scope.$on('feed:new', function(evt) {
         loadFeeds(1);
+        $scope.user.postcount = $scope.user.postcount + 1;
       });
 
       $scope.goToFeedDetail = function(index) {
         var feed = $scope.feeds[index];
-        $state.go('feeddetail', {id: feed.feed.objectId});
+        $state.go('feeddetail', {id: feed._id});
       }
 
       function loadFeeds(currentPage) {

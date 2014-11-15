@@ -11,7 +11,8 @@
           logout: logout,
           requestPasswordReset: requestPasswordReset,
           updateInfo: updateUserInfo,
-          getCurrentUser: getCurrentUser
+          getCurrentUser: getCurrentUser,
+          getUserPageData: getUserPageData
         };
         return userService;
 
@@ -36,6 +37,15 @@
 
         function getCurrentUser() {
           return $http.get('/currentuser');
+        }
+
+        function getUserPageData(name, page) {
+          return $http.get('/user/data', {
+            params: {
+              username: name,
+              page: page
+            }
+          });
         }
       }
     ]);

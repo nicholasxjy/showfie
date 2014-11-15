@@ -1,8 +1,5 @@
 <div ng-repeat="feed in feeds">
-  <div class="sf-feed-wrap" ng-click="goToFeedDetail($index)">
-    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
-      <img ng-src="{{feed.attachment.url}}" class="img-responsive">
-    </div>
+  <div class="sf-feed-wrap sf-user-feed-item" ng-click="goToFeedDetail($index)">
     <div class="feed-content-wrap">
       <div class="feed-author-wrap">
         <div class="feed-author-top">
@@ -21,6 +18,9 @@
       </div>
       <div class="feed-content">
         <p>{{feed.content}}</p>
+      </div>
+      <div class="user-feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
+        <img ng-src="{{feed.attachment.url}}" class="img-responsive img-rounded">
       </div>
       <div class="feed-action-wrap">
         <ul class="list-inline">

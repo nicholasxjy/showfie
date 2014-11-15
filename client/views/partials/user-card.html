@@ -8,7 +8,7 @@
             <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
             <div class="user-info-wrap">
                 <div class="user-name">
-                 <a href="#">{{user.username}}</a>
+                 <a ui-sref="user({name: user.username})">{{user.username}}</a>
                 </div>
                 <div class="user-gender-location">
                     <i class="fa fa-user"></i>

@@ -1,45 +1,45 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="home">Showfie</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Me</a>
-                </li>
-                <li><a href="#">Gallery</a>
-                </li>
-                <li>
-                  <a href="#">Messages <span class="badge badge-not-zero">2</span></a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" id="navbar-right-dropdown">
-                      <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a ui-sref="search"><i class="fa fa-search"></i>search</a>
-                        </li>
-                        <li><a ui-sref="settings.profile"><i class="fa fa-gear"></i>settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a ui-sref="logout">Log out</a>
-                        </li>
-                    </ul>
-                </li>
-                <li id="share-link">
-                  <a data-toggle="modal" data-target="#create-feed-modal">showfiing</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="home">Showfie</a>
     </div>
-    <!-- /.container-fluid -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="user({name: user.username})">Me</a>
+        </li>
+        <li><a ui-sref="user.gallery({name: user.username})">Gallery</a>
+        </li>
+        <li>
+          <a ui-sref="user.messages({name: user.username})">Messages <span class="badge badge-not-zero">2</span></a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" id="navbar-right-dropdown">
+            <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ui-sref="search"><i class="fa fa-search"></i>search</a>
+            </li>
+            <li><a ui-sref="settings.profile"><i class="fa fa-gear"></i>settings</a>
+            </li>
+            <li class="divider"></li>
+            <li><a ui-sref="logout">Log out</a>
+            </li>
+          </ul>
+        </li>
+        <li id="share-link">
+          <a data-toggle="modal" data-target="#create-feed-modal">showfiing</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
 </nav>

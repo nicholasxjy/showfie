@@ -66,6 +66,21 @@ angular
           templateUrl: 'views/child/home.html',
           controller: 'HomeController'
         })
+        .state('user', {
+          url: '/:name',
+          templateUrl: 'views/child/user.html',
+          controller: 'UserController'
+        })
+        .state('user.gallery', {
+          url: '/gallery',
+          templateUrl: 'views/child/gallery.html',
+          controller: 'GalleryController'
+        })
+        .state('user.messages', {
+          url: '/messages',
+          templateUrl: 'views/child/messages.html',
+          controller: 'MessageController'
+        })
         .state('feeddetail', {
           url: '/feed/:id',
           templateUrl: 'views/child/feed-detail.html'

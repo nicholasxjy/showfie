@@ -1,6 +1,6 @@
 var userApi = require('./server/api/user');
 var feedApi = require('./server/api/feed');
-
+var dataApi = require('./server/api/data');
 
 var route = function(app) {
   app.get('/', function(req, res) {
@@ -17,6 +17,8 @@ var route = function(app) {
   app.get('/currentuser', userApi.getCurrentUser);
   app.post('/feed/create', feedApi.create);
   app.get('/feed/all', feedApi.getAll);
+
+  app.get('/user/data', dataApi.getAllUserData);
 }
 
 module.exports = route;
