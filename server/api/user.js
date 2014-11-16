@@ -277,6 +277,84 @@ exports.resetPass = function(req, res, next) {
   });
 };
 
+exports.addFollow = function(req, res, next) {
+  var followid = req.body.followid;
+  if (!req.session || !req.session.user) {
+    return res.status(403).send('login first');
+  }
+  // add cuser  add author
+  async.parallel(
+    [
+      function(cb1) {
+        userQuery.getUserById(req.session.user._id, function(err, user) {
+          if (err) return next(err);
+          user.followers.push(followid);
+          user.save(function(err, newUser) {
+            if (err) cb1(err);
+            cb1(null, newUser);
+          });
+        });
+      },
+      function(cb2) {
+        userQuery.getUserById(followid, function(err, follower) {
+          if (err) cb2(err);
+          follower.followings.push(req.session.user._id);
+          follower.save(function(err, newFollower) {
+            if (err) cb2(err);
+            cb2(null, newFollower);
+          });
+        });
+      }
+    ], function(err, results) {
+      if (err) return next(err);
+      if (!results || results.length !== 2) {
+        return res.json({status: 'fail', error: '操作有错误'});
+      }
+      return res.json({status: 'success', user: results[0], follower: results[1]})
+  });
+};
+
+exports.removeFollow = function(req, res, next) {
+  var unfollowid = req.body.unfollowid;
+  console.log(unfollowid);
+  if (!req.session || !req.session.user) {
+    return res.status(403).send('login first');
+  }
+  // add cuser  add author
+  async.parallel(
+    [
+      function(cb1) {
+        userQuery.getUserById(req.session.user._id, function(err, user) {
+          if (err) return next(err);
+          console.log(user);
+          user.followers.pull(unfollowid);
+          user.save(function(err, newUser) {
+            if (err) cb1(err);
+            cb1(null, newUser);
+          });
+        });
+      },
+      function(cb2) {
+        userQuery.getUserById(unfollowid, function(err, follower) {
+          if (err) cb2(err);
+          console.log(follower);
+          follower.followings.pull(req.session.user._id);
+          follower.save(function(err, newFollower) {
+            if (err) cb2(err);
+            cb2(null, newFollower);
+          });
+        });
+      }
+    ], function(err, results) {
+      if (err) return next(err);
+      if (!results || results.length !== 2) {
+        return res.json({status: 'fail', error: '操作有错误'});
+      }
+      return res.json({status: 'success', user: results[0], follower: results[1]})
+  });
+}
+
+
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;
   if (sess && sess.user) {

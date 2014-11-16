@@ -83,7 +83,8 @@ angular
         })
         .state('feeddetail', {
           url: '/feed/:id',
-          templateUrl: 'views/child/feed-detail.html'
+          templateUrl: 'views/child/feed-detail.html',
+          controller: 'FeedDetailController'
         })
 
   }]);

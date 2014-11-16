@@ -15,10 +15,15 @@ var route = function(app) {
   app.post('/update/avatar', userApi.updateAvatar);
   app.post('/update/banner', userApi.updateBanner);
   app.get('/currentuser', userApi.getCurrentUser);
+
   app.post('/feed/create', feedApi.create);
   app.get('/feed/all', feedApi.getAll);
-
+  app.get('/feed/detail', feedApi.getFeedDetail);
   app.get('/user/data', dataApi.getAllUserData);
+  app.post('/follow', userApi.addFollow);
+  app.post('/unfollow', userApi.removeFollow);
+  app.post('/like', feedApi.addLike);
+  app.post('/unlike', feedApi.removeLike);
 }
 
 module.exports = route;

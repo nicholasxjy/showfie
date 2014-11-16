@@ -76,6 +76,26 @@ exports.getAll = function(req, res, next) {
     if (err) return next(err);
     return res.json({status: 'success', data: feeds});
   });
+};
 
+exports.getFeedDetail = function(req, res, next) {
+  var feedid = req.query.id;
+  if (!feedid) {
+    return res.json({status: 'fail', error: '信息有误!'});
+  }
+  feedQuery.getFeedById(feedid, function(err, feed) {
+    if (err) return next(err);
+    if (!feed) {
+      return res.json({status: 'fail', error: '未找到此feed'});
+    }
+    return res.json({status: 'success', data: feed});
+  });
+};
+
+exports.addLike = function(req, res, next) {
+
+}
+
+exports.removeLike = function(req, res, next) {
 
 }

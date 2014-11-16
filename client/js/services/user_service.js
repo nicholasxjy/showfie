@@ -12,7 +12,9 @@
           requestPasswordReset: requestPasswordReset,
           updateInfo: updateUserInfo,
           getCurrentUser: getCurrentUser,
-          getUserPageData: getUserPageData
+          getUserPageData: getUserPageData,
+          addFollow: addFollow,
+          removeFollow: removeFollow
         };
         return userService;
 
@@ -46,6 +48,14 @@
               page: page
             }
           });
+        }
+
+        function addFollow(followid) {
+          return $http.post('/follow', {followid: followid});
+        }
+
+        function removeFollow(unfollowid) {
+          return $http.post('/unfollow', {unfollowid: unfollowid});
         }
       }
     ]);

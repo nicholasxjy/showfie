@@ -6,7 +6,8 @@
       '$http',
       function($http) {
         var feedService = {
-          getAllFeeds: getAllFeeds
+          getAllFeeds: getAllFeeds,
+          getFeedDetail: getFeedDetail
         };
         return feedService;
 
@@ -16,6 +17,16 @@
             url:'/feed/all',
             method: 'GET',
             params: {page: cpage}
+          });
+        }
+
+        function getFeedDetail(id) {
+          return $http({
+            url: '/feed/detail',
+            method: 'GET',
+            params: {
+              id: id
+            }
           });
         }
       }

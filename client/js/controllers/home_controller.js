@@ -14,7 +14,7 @@
         .then(function(resUser) {
           if (resUser.status === 200 && resUser.data) {
             $scope.user = resUser.data.data;
-            $scope.user.postcount = resUser.data.userpostcount;
+            $scope.postcount = resUser.data.userpostcount;
             loadFeeds(1);
           } else {
             $state.go('login');
@@ -25,9 +25,30 @@
         $scope.user.postcount = $scope.user.postcount + 1;
       });
 
-      $scope.goToFeedDetail = function(index) {
-        var feed = $scope.feeds[index];
-        $state.go('feeddetail', {id: feed._id});
+      $scope.submitFollow = function(feed) {
+        UserService.addFollow(feed.author._id)
+          .then(function(res) {
+            console.log(res);
+            if (res.status === 200 && res.data) {
+              $scope.user = res.data.user;
+              feed.author = res.data.follower;
+            }
+          }, function(err) {
+            console.log(err);
+          })
+      }
+      $scope.submitUnfollow = function(feed) {
+        console.log(feed);
+        UserService.removeFollow(feed.author._id)
+          .then(function(res) {
+            console.log(res);
+            if (res.status === 200 && res.data) {
+              $scope.user = res.data.user;
+              feed.author = res.data.follower;
+            }
+          }, function(err) {
+            console.log(err);
+          })
       }
 
       function loadFeeds(currentPage) {

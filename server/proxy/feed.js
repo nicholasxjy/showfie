@@ -25,3 +25,16 @@ exports.getFeedsByQuery = function (query, fields, opts, cb) {
 exports.getFeedsCountByUserId = function(userid, cb) {
   Feed.count({author: userid}, cb);
 };
+
+exports.getFeedById = function(feedid, cb) {
+  Feed.findById(feedid, function(err, feed) {
+    if (err) cb(err);
+    var options = [
+      {path: 'attachment'},
+      {path: 'author'},
+      {path: 'comments'},
+      {path: 'likes'}
+    ];
+    Feed.populate(feed, options, cb);
+  });
+};
