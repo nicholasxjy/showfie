@@ -518,8 +518,19 @@ body {
   .comment-item .media-left img {
     height: 36px;
     width: 36px; }
-  .comment-item .comment-other span {
-    cursor: pointer; }
+  .comment-item .comment-content {
+    margin-bottom: 2px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px; }
+    .comment-item .comment-content a {
+      padding-right: 4px; }
+  .comment-item .comment-other {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px; }
+    .comment-item .comment-other span {
+      cursor: pointer; }
 
 .welcome-wrap, .login-wrap, .forget-wrap {
   position: fixed;

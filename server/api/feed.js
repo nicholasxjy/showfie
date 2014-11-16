@@ -155,7 +155,9 @@ exports.addComment = function(req, res, next) {
     ], function(err, result) {
       if (err) return next(err);
       var options = [
-        {path: 'comments'}
+        {path: 'comments', options: {
+          sort: {'createdAt': -1}
+        }}
       ];
       Feed.populate(result, options, function(err, commentFeed) {
         var nestOptions = [

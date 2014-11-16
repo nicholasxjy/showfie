@@ -57,7 +57,7 @@
           </a>
           <div class="media-body">
             <h4 class="media-heading">{{comment.author.username}}</h4>
-            <p><a ui-sref="user({name: comment.touser.username})">@{{comment.touser.username}}</a>{{comment.content}}</p>
+            <p class="comment-content"><a ui-sref="user({name: comment.touser.username})">@{{comment.touser.username}}</a>{{comment.content}}</p>
             <p class="comment-other"><time>{{comment.createdAt | date: 'MM-dd hh:ss'}}</time>
             <span class="fa fa-reply pull-right" ng-click="addComment(comment)">回复</span></p>
           </div>

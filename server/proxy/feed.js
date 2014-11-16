@@ -32,7 +32,9 @@ exports.getFeedById = function(feedid, cb) {
     var options = [
       {path: 'attachment'},
       {path: 'author'},
-      {path: 'comments'},
+      {path: 'comments', options: {
+        sort: {'createdAt': -1}
+      }},
       {path: 'likes'}
     ];
     Feed.populate(feed, options, function(err, pfeed) {
