@@ -63,8 +63,8 @@
       <div class="feed-action-wrap">
         <ul class="list-inline">
           <li>
-            <a ng-click="submitLike(feed)" ng-if="user.likes.indexOf(user._id) === -1"><i class="fa fa-heart-o"></i></a>
-            <a ng-click="submitUnlike(feed)" ng-if="user.likes.indexOf(user._id) !== -1"><i class="fa fa-heart"></i></a>
+            <a ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><i class="fa fa-heart-o"></i></a>
+            <a ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="fa fa-heart"></i></a>
             <span class="feed-count">{{feed.likes.length}}</span>
           </li>
           <li>

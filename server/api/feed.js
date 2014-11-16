@@ -4,6 +4,8 @@ var fs = require('fs');
 var feedQuery = require('../proxy/feed');
 var fileQuery = require('../proxy/file');
 var qiniuService = require('../services/qiniu');
+var Feed = require('../models').Feed;
+var _ = require('underscore');
 
 exports.create = function(req, res, next) {
   var user = req.session.user;
@@ -88,14 +90,37 @@ exports.getFeedDetail = function(req, res, next) {
     if (!feed) {
       return res.json({status: 'fail', error: '未找到此feed'});
     }
-    return res.json({status: 'success', data: feed});
+    var likes = _.pluck(feed.likes, '_id');
+    return res.json({status: 'success', feed: feed, likeusers: likes});
   });
 };
 
 exports.addLike = function(req, res, next) {
-
-}
+  if (!req.session || !req.session.user) {
+    return res.status(403).send('login first');
+  }
+  var feedid = req.body.feedid;
+  feedQuery.findFeedById(feedid, function(err, feed) {
+    if (err) return next(err);
+    feed.likes.push(req.session.user._id);
+    feed.save(function(err, newFeed) {
+      if (err) return next(err);
+      return res.json({status: 'success', data: newFeed.likes});
+    });
+  });
+};
 
 exports.removeLike = function(req, res, next) {
-
-}
+  if (!req.session || !req.session.user) {
+    return res.status(403).send('login first');
+  }
+  var feedid = req.body.feedid;
+  feedQuery.findFeedById(feedid, function(err, feed) {
+    if (err) return next(err);
+    feed.likes.pull(req.session.user._id);
+    feed.save(function(err, newFeed) {
+      if (err) return next(err);
+      return res.json({status: 'success', data: newFeed.likes});
+    });
+  });
+};

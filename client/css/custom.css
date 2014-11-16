@@ -283,6 +283,10 @@ body {
   .feed-author-top img {
     width: 50px;
     height: 50px; }
+  .feed-author-top button {
+    position: absolute;
+    right: 35px;
+    top: 10px; }
   .feed-author-top .feed-author-info {
     position: absolute;
     top: 5px;
@@ -296,6 +300,9 @@ body {
       font-size: 12px;
       font-weight: 300;
       color: #7F8C8D; }
+
+.detail-content-wrap .feed-action-wrap {
+  margin-top: 15px; }
 
 .td-error {
   font-size: 13px;

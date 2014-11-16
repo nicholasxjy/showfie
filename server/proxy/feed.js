@@ -38,3 +38,7 @@ exports.getFeedById = function(feedid, cb) {
     Feed.populate(feed, options, cb);
   });
 };
+
+exports.findFeedById = function(feedid, cb) {
+  Feed.findById(feedid, cb);
+}

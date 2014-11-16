@@ -28,7 +28,6 @@
       $scope.submitFollow = function(feed) {
         UserService.addFollow(feed.author._id)
           .then(function(res) {
-            console.log(res);
             if (res.status === 200 && res.data) {
               $scope.user = res.data.user;
               feed.author = res.data.follower;
@@ -41,7 +40,6 @@
         console.log(feed);
         UserService.removeFollow(feed.author._id)
           .then(function(res) {
-            console.log(res);
             if (res.status === 200 && res.data) {
               $scope.user = res.data.user;
               feed.author = res.data.follower;
@@ -51,6 +49,26 @@
           })
       }
 
+      $scope.submitLike = function(feed) {
+        UserService.addLike(feed._id)
+          .then(function(res) {
+            if (res.status === 200 && res.data) {
+              feed.likes = res.data.data;
+            }
+          }, function(err) {
+            console.log(err);
+          })
+      }
+      $scope.submitUnlike = function(feed) {
+        UserService.removeLike(feed._id)
+          .then(function(res) {
+            if (res.status === 200 && res.data) {
+              feed.likes = res.data.data;
+            }
+          }, function(err) {
+            console.log(err);
+          })
+      }
       function loadFeeds(currentPage) {
         FeedService.getAllFeeds(currentPage)
           .success(function(res) {

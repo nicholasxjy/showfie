@@ -14,7 +14,9 @@
           getCurrentUser: getCurrentUser,
           getUserPageData: getUserPageData,
           addFollow: addFollow,
-          removeFollow: removeFollow
+          removeFollow: removeFollow,
+          addLike: addLike,
+          removeLike: removeLike
         };
         return userService;
 
@@ -56,6 +58,13 @@
 
         function removeFollow(unfollowid) {
           return $http.post('/unfollow', {unfollowid: unfollowid});
+        }
+
+        function addLike(feedid) {
+          return $http.post('/like', {feedid: feedid});
+        }
+        function removeLike(feedid) {
+          return $http.post('/unlike', {feedid: feedid});
         }
       }
     ]);
