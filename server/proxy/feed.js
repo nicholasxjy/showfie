@@ -35,7 +35,14 @@ exports.getFeedById = function(feedid, cb) {
       {path: 'comments'},
       {path: 'likes'}
     ];
-    Feed.populate(feed, options, cb);
+    Feed.populate(feed, options, function(err, pfeed) {
+      if (err) cb(err);
+      var nestOptions = [
+        {path: 'comments.author', model: 'User'},
+        {path: 'comments.touser', model: 'User'}
+      ];
+      Feed.populate(pfeed, nestOptions, cb);
+    });
   });
 };
 

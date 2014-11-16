@@ -1,0 +1,30 @@
+<form role="form" name="commentForm" novalidate ng-submit="submitComment(info)">
+  <h3 class="comment-title">回复@{{commentTo.author.username}}</h3>
+  <div class="ngdialog-message">
+    <div class="touser-wrap">
+      <div class="feed-author-wrap">
+        <div class="feed-author-top">
+          <a>
+            <img ng-src="{{commentTo.author.avatar}}" class="img-responsive img-circle">
+          </a>
+          <div class="feed-author-info">
+            <div class="author-name">
+              <a ui-sref="user({name: commentTo.author.username})">{{commentTo.author.username}}</a>
+            </div>
+            <div class="feed-time">
+              {{commentTo.createdAt | date: 'MM-dd hh:ss'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      <textarea class="form-control" rows="4" ng-model="info.content" required placeholder=""></textarea>
+    </div>
+  </div>
+  <div class="ngdialog-buttons mt">
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="commentForm.$invalid">回复</button>
+  </div>
+</form>
+
+

@@ -13,6 +13,7 @@ angular
     'ngAnimate',
     'angularFileUpload',
     'ui.router',
+    'ngDialog',
     'app.services',
     'app.directives',
     'app.controllers'

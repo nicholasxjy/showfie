@@ -7,10 +7,11 @@
       'UserService',
       'FeedService',
       '$stateParams',
+      'ngDialog',
       detailCtrl
     ]);
 
-  function detailCtrl($scope, UserService, FeedService, $stateParams) {
+  function detailCtrl($scope, UserService, FeedService, $stateParams, ngDialog) {
     var id = $stateParams.id;
     UserService.getCurrentUser()
       .then(function(resUser) {
@@ -61,7 +62,7 @@
       UserService.addLike(feed._id)
         .then(function(res) {
           if (res.status === 200 && res.data) {
-            feed.likes = res.data.data;
+            $scope.likeusers = res.data.data;
           }
         }, function(err) {
           console.log(err);
@@ -71,7 +72,37 @@
       UserService.removeLike(feed._id)
         .then(function(res) {
           if (res.status === 200 && res.data) {
-            feed.likes = res.data.data;
+            $scope.likeusers = res.data.data;
+          }
+        }, function(err) {
+          console.log(err);
+        })
+    }
+
+    $scope.addComment = function(comment) {
+      var commentObj = {};
+      if (!comment) {
+        commentObj.author = $scope.feed.author;
+        commentObj.createdAt = $scope.feed.createdAt;
+      } else {
+        commentObj = comment;
+      }
+      $scope.commentTo = commentObj;
+      ngDialog.open({
+        template: 'views/partials/comment.html',
+        scope: $scope
+      });
+    };
+
+    $scope.submitComment =function(info) {
+      info.feedid = $scope.feed._id;
+      info.touserid = $scope.commentTo.author._id;
+      UserService.addComment(info)
+        .then(function(res) {
+          console.log(res);
+          if (res.status === 200 && res.data) {
+            $scope.feed.comments = res.data.data.comments;
+            ngDialog.close('ngdialog1');
           }
         }, function(err) {
           console.log(err);

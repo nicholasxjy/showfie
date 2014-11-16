@@ -63,13 +63,12 @@
       <div class="feed-action-wrap">
         <ul class="list-inline">
           <li>
-            <a ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><i class="fa fa-heart-o"></i></a>
-            <a ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="fa fa-heart"></i></a>
-            <span class="feed-count">{{feed.likes.length}}</span>
+            <a class="btn btn-default" ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><i class="fa fa-heart-o"></i><span class="feed-count">{{feed.likes.length}}</span></a>
+            <a class="btn btn-danger" ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="fa fa-heart"></i><span class="feed-count">{{feed.likes.length}}</span></a>
+
           </li>
           <li>
-            <a ui-sref="feeddetail({id: feed._id})"><i class="fa fa-comment-o"></i></a>
-            <span class="feed-count">{{feed.comments.length}}</span>
+            <a class="btn btn-info" ui-sref="feeddetail({id: feed._id})"><i class="fa fa-comment-o"></i><span class="feed-count">{{feed.comments.length}}</span></a>
           </li>
           <li>
             <a ui-sref="feeddetail({id: feed._id})" class="sf-feed-wrap-link">详情</a>

@@ -16,7 +16,8 @@
           addFollow: addFollow,
           removeFollow: removeFollow,
           addLike: addLike,
-          removeLike: removeLike
+          removeLike: removeLike,
+          addComment: addComment
         };
         return userService;
 
@@ -65,6 +66,10 @@
         }
         function removeLike(feedid) {
           return $http.post('/unlike', {feedid: feedid});
+        }
+
+        function addComment(info) {
+          return $http.post('/addcomment', info);
         }
       }
     ]);
