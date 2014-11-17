@@ -48,6 +48,10 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+  notification: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Notification'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

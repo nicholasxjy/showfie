@@ -3,6 +3,8 @@ var async = require('async');
 var fs = require('fs');
 var feedQuery = require('../proxy/feed');
 var fileQuery = require('../proxy/file');
+var notiQuery = require('../proxy/notification');
+var userQuery = require('../proxy/user');
 var commentQuery = require('../proxy/comment');
 var qiniuService = require('../services/qiniu');
 var Feed = require('../models').Feed;
@@ -107,6 +109,36 @@ exports.addLike = function(req, res, next) {
     feed.likes.push(req.session.user._id);
     feed.save(function(err, newFeed) {
       if (err) return next(err);
+      //here crate new noti
+      //feed: newFeed type: like comment: null
+      async.parallel(
+        [
+          function(cb1) {
+            var notitype = 'like';
+            notiQuery.create(newFeed._id, newFeed.author, req.session.user._id, notitype, null, function(err, noti) {
+              if (err) return cb1(err);
+              cb1(null, noti);
+            });
+          },
+          function(cb2) {
+            userQuery.getUserById(newFeed.author, function(err, master) {
+              if (err) cb2(err);
+              cb2(null, master);
+            });
+          }
+        ], function(err, results) {
+          if (err) {
+            throw err;
+          }
+          if (results && results.length === 2) {
+            var noti = results[0];
+            var master = results[1];
+            master.notification.push(noti._id);
+            master.save();
+          } else {
+            throw new Error('save noti fail!');
+          }
+        });
       return res.json({status: 'success', data: newFeed.likes});
     });
   });
@@ -135,11 +167,14 @@ exports.addComment = function(req, res, next) {
   var author = req.session.user._id;
   var touser = req.body.touserid;
   var content = req.body.content;
+
+  var noticomment;
   async.waterfall(
     [
       function(cb1) {
         commentQuery.create(feed, author, touser, content, function(err, comment) {
           if (err) cb1(err);
+          noticomment = comment._id;
           cb1(null, comment);
         });
       },
@@ -154,6 +189,36 @@ exports.addComment = function(req, res, next) {
       }
     ], function(err, result) {
       if (err) return next(err);
+      //here create comment notification
+      //feed: feed master: touser author: author
+      async.parallel(
+        [
+          function(cb1) {
+            var notitype = 'comment';
+            notiQuery.create(feed, touser, author, notitype, noticomment, function(err, noti) {
+              if (err) return cb1(err);
+              cb1(null, noti);
+            });
+          },
+          function(cb2) {
+            userQuery.getUserById(touser, function(err, master) {
+              if (err) cb2(err);
+              cb2(null, master);
+            });
+          }
+        ], function(err, results) {
+          if (err) {
+            throw err;
+          }
+          if (results && results.length === 2) {
+            var noti = results[0];
+            var master = results[1];
+            master.notification.push(noti._id);
+            master.save();
+          } else {
+            throw new Error('save noti fail!');
+          }
+      });
       var options = [
         {path: 'comments', options: {
           sort: {'createdAt': -1}

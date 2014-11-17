@@ -38,3 +38,12 @@ exports.getFollowersByName = function(name, cb) {
     User.populate(user, options, cb);
   });
 }
+exports.getFollowingsByName = function(name, cb) {
+  User.findOne({username: name}, function(err, user) {
+    if (err) cb(err);
+    var options = [{
+      path: 'followings'
+    }];
+    User.populate(user, options, cb);
+  });
+}

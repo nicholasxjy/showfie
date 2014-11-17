@@ -3,8 +3,10 @@ var config = require('../../config');
 var validator = require('validator');
 var userQuery = require('../proxy/user');
 var feedQuery = require('../proxy/feed');
+var notiQuery = require('../proxy/notification');
 var async = require('async');
 var qiniuService = require('../services/qiniu');
+
 
 exports.signUp = function(req, res, next) {
   var username = req.body.username;
@@ -215,7 +217,6 @@ exports.updateBanner = function(req, res, next) {
   });
 }
 
-
 exports.requestPasswordReset = function(req, res, next) {
   var email = req.body.email;
   if (!validator.isEmail(email)) {
@@ -310,6 +311,37 @@ exports.addFollow = function(req, res, next) {
       if (!results || results.length !== 2) {
         return res.json({status: 'fail', error: '操作有错误'});
       }
+      //here create follow notification and push it to user notification
+      // feed: null type: follow comment: null
+
+      async.parallel(
+        [
+          function(cb1) {
+            var notitype = 'follow';
+            notiQuery.create(null, followid, req.session.user._id, notitype, null, function(err, noti) {
+              if (err) cb1(err);
+              cb1(null, noti);
+            });
+          },
+          function(cb2) {
+            userQuery.getUserById(followid, function(err, master) {
+              if (err) cb2(err);
+              cb2(null, master);
+            })
+          }
+        ], function(err, results) {
+          if (err) {
+            throw err;
+          }
+          if (results && results.length === 2) {
+            var noti = results[0];
+            var master = results[1];
+            master.notification.push(noti._id);
+            master.save()
+          } else {
+            throw new Error('save noti fail');
+          }
+        });
       return res.json({status: 'success', user: results[0], follower: results[1]})
   });
 };
@@ -363,7 +395,15 @@ exports.getFollowers = function(req, res, next) {
     return res.json({status: 'success', data: user});
   });
 }
-
+exports.getFollowings = function(req, res, next) {
+  var username = req.query.username;
+  var page = req.query.page;
+  page = parseInt(page, 10);
+  userQuery.getFollowingsByName(username, function(err, user) {
+    if (err) return next(err);
+    return res.json({status: 'success', data: user});
+  });
+}
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;
   if (sess && sess.user) {

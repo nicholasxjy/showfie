@@ -27,6 +27,7 @@ var route = function(app) {
   app.post('/addcomment', feedApi.addComment);
 
   app.get('/user/followers', userApi.getFollowers);
+  app.get('/user/followings', userApi.getFollowings);
 }
 
 module.exports = route;

@@ -15,6 +15,7 @@
         .then(function(resUser) {
           if (resUser.status === 200 && resUser.data) {
             $scope.user = resUser.data.data;
+            console.log($scope.user);
             $scope.postcount = resUser.data.userpostcount;
             loadFeeds(1);
           } else {

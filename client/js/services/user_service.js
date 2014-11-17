@@ -14,6 +14,7 @@
           getCurrentUser: getCurrentUser,
           getUserPageData: getUserPageData,
           getUserFollowers: getUserFollowers,
+          getUserFollowings: getUserFollowings,
           addFollow: addFollow,
           removeFollow: removeFollow,
           addLike: addLike,
@@ -55,6 +56,14 @@
         }
         function getUserFollowers(name, page) {
           return $http.get('/user/followers', {
+            params: {
+              username: name,
+              page: page
+            }
+          })
+        }
+        function getUserFollowings(name, page) {
+          return $http.get('/user/followings', {
             params: {
               username: name,
               page: page

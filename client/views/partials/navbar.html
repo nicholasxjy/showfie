@@ -16,7 +16,7 @@
         <li><a ui-sref="user.gallery({name: user.username})">Gallery</a>
         </li>
         <li>
-          <a ui-sref="user.messages({name: user.username})">Messages <span class="badge badge-not-zero">2</span></a>
+          <a ui-sref="user.messages({name: user.username})">Messages <span class="badge badge-not-zero" ng-if="user.notification.length">{{user.notification.length}}</span></a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
