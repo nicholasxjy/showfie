@@ -7,9 +7,10 @@
       'UserService',
       'FeedService',
       '$state',
+      '$sce',
       homeCtrl
     ]);
-    function homeCtrl($scope, UserService, FeedService, $state) {
+    function homeCtrl($scope, UserService, FeedService, $state, $sce) {
       UserService.getCurrentUser()
         .then(function(resUser) {
           if (resUser.status === 200 && resUser.data) {
@@ -71,14 +72,40 @@
       }
       function loadFeeds(currentPage) {
         FeedService.getAllFeeds(currentPage)
-          .success(function(res) {
-            var feeds = res.data;
+          .then(function(res) {
+            if (res.status === 200 && res.data.data)
+            var feeds = res.data.data;
+            angular.forEach(feeds, function(feed) {
+              if (feed.attachment && feed.attachment.type === 'video') {
+                feed.attachment.config = {
+                  sources: [
+                    {src: $sce.trustAsResourceUrl(feed.attachment.url), type: 'video/mp4'},
+                    {src: $sce.trustAsResourceUrl(feed.attachment.url), type: 'video/webm'},
+                    {src: $sce.trustAsResourceUrl(feed.attachment.url), type: 'video/ogg'}
+                  ],
+                  theme: 'lib/videogular-themes-default/videogular.css',
+                  plugins: {
+
+                  }
+                }
+              }
+              if (feed.attachment && feed.attachment.type === 'audio') {
+                feed.attachment.config = {
+                  sources: [
+                    {src: $sce.trustAsResourceUrl(feed.attachment.url), type: 'audio/mpeg'},
+                    {src: $sce.trustAsResourceUrl(feed.attachment.url), type: 'audio/ogg'}
+                  ],
+                  theme: {
+                    url: 'lib/videogular-themes-default/videogular.css'
+                  }
+                }
+              }
+            });
             $scope.feeds = feeds;
             console.log(feeds);
-          })
-          .error(function(error) {
-            console.log(error);
-          })
+          }, function(err) {
+            console.log(err);
+          });
       }
     }
 })();

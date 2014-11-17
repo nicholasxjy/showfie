@@ -25,6 +25,8 @@ var route = function(app) {
   app.post('/like', feedApi.addLike);
   app.post('/unlike', feedApi.removeLike);
   app.post('/addcomment', feedApi.addComment);
+
+  app.get('/user/followers', userApi.getFollowers);
 }
 
 module.exports = route;

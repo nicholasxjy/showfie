@@ -13,6 +13,7 @@
           updateInfo: updateUserInfo,
           getCurrentUser: getCurrentUser,
           getUserPageData: getUserPageData,
+          getUserFollowers: getUserFollowers,
           addFollow: addFollow,
           removeFollow: removeFollow,
           addLike: addLike,
@@ -52,7 +53,14 @@
             }
           });
         }
-
+        function getUserFollowers(name, page) {
+          return $http.get('/user/followers', {
+            params: {
+              username: name,
+              page: page
+            }
+          })
+        }
         function addFollow(followid) {
           return $http.post('/follow', {followid: followid});
         }

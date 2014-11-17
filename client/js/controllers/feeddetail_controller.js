@@ -8,10 +8,11 @@
       'FeedService',
       '$stateParams',
       'ngDialog',
+      '$sce',
       detailCtrl
     ]);
 
-  function detailCtrl($scope, UserService, FeedService, $stateParams, ngDialog) {
+  function detailCtrl($scope, UserService, FeedService, $stateParams, ngDialog, $sce) {
     var id = $stateParams.id;
     UserService.getCurrentUser()
       .then(function(resUser) {
@@ -22,7 +23,32 @@
             .then(function(resFeed) {
               console.log(resFeed);
               if (resUser.status === 200 && resFeed.data) {
-                $scope.feed = resFeed.data.feed;
+                var thefeed = resFeed.data.feed;
+                if (thefeed.attachment && thefeed.attachment.type === 'video') {
+                  thefeed.attachment.config = {
+                    sources: [
+                      {src: $sce.trustAsResourceUrl(thefeed.attachment.url), type: 'video/mp4'},
+                      {src: $sce.trustAsResourceUrl(thefeed.attachment.url), type: 'video/webm'},
+                      {src: $sce.trustAsResourceUrl(thefeed.attachment.url), type: 'video/ogg'}
+                    ],
+                    theme: 'lib/videogular-themes-default/videogular.css',
+                    plugins: {
+
+                    }
+                  }
+                }
+                if (thefeed.attachment && thefeed.attachment.type === 'audio') {
+                  thefeed.attachment.config = {
+                    sources: [
+                      {src: $sce.trustAsResourceUrl(thefeed.attachment.url), type: 'audio/mpeg'},
+                      {src: $sce.trustAsResourceUrl(thefeed.attachment.url), type: 'audio/ogg'}
+                    ],
+                    theme: {
+                      url: 'lib/videogular-themes-default/videogular.css'
+                    }
+                  }
+                }
+                $scope.feed = thefeed;
                 $scope.likeusers = resFeed.data.likeusers;
               }
             }, function(err) {

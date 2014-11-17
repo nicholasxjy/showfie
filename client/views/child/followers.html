@@ -1,0 +1,19 @@
+<div class="user-divider">
+  <a ui-sref="user({name: user.username})">{{user.username}}'s Followers</a>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" ng-repeat="follower in user.followers">
+      <div class="follow-wrap">
+        <div class="follow-avatar">
+          <img ng-src="{{follower.avatar}}" class="img-responsive img-circle">
+        </div>
+        <div class="follow-info">
+          <h4>{{follower.username}}</h4>
+          <button class="btn btn-danger" ng-if="user._id === cuser._id" ng-click="submitUnfollow(follower)">取消关注</button>
+          <p>{{follower.profile}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

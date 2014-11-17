@@ -14,6 +14,10 @@ angular
     'angularFileUpload',
     'ui.router',
     'ngDialog',
+    "ngSanitize",
+    "com.2fdevs.videogular",
+    "com.2fdevs.videogular.plugins.controls",
+    'com.2fdevs.videogular.plugins.poster',
     'app.services',
     'app.directives',
     'app.controllers'
@@ -81,6 +85,16 @@ angular
           url: '/messages',
           templateUrl: 'views/child/messages.html',
           controller: 'MessageController'
+        })
+        .state('user.followers', {
+          url: '/followers',
+          templateUrl: 'views/child/followers.html',
+          controller: 'FollowersController'
+        })
+        .state('user.followings', {
+          url: '/followings',
+          templateUrl: 'views/child/followings.html',
+          controller: 'FollowingsController'
         })
         .state('feeddetail', {
           url: '/feed/:id',

@@ -1,8 +1,5 @@
 <div ng-repeat="feed in feeds">
   <div class="sf-feed-wrap">
-    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
-      <img ng-src="{{feed.attachment.url}}" class="img-responsive">
-    </div>
     <div class="feed-content-wrap">
       <div class="feed-author-wrap">
         <div class="feed-author-top">
@@ -60,15 +57,58 @@
       <div class="feed-content">
         <p>{{feed.content}}</p>
       </div>
-      <div class="feed-action-wrap">
+      <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
+        <img ng-src="{{feed.attachment.url}}" class="img-responsive">
+      </div>
+      <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
+        <videogular vg-theme="feed.attachment.config.theme">
+          <vg-video vg-src="feed.attachment.config.sources">
+          </vg-video>
+          <vg-controls>
+            <vg-play-pause-button></vg-play-pause-button>
+            <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+            <vg-scrubBar>
+              <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+            </vg-scrubBar>
+            <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+            <vg-volume>
+              <vg-mutebutton></vg-mutebutton>
+              <vg-volumebar></vg-volumebar>
+            </vg-volume>
+            <vg-fullscreenButton></vg-fullscreenButton>
+          </vg-controls>
+          <vg-overlay-play></vg-overlay-play>
+          <vg-poster-image vg-url='feed.attachment.config.plugins.poster'></vg-poster-image>
+        </videogular>
+      </div>
+      <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
+        <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
+          <vg-audio vg-src="feed.attachment.config.sources">
+          </vg-audio>
+          <vg-controls>
+            <vg-play-pause-button></vg-play-pause-button>
+            <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+            <vg-scrubBar>
+              <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+            </vg-scrubBar>
+            <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+            <vg-volume>
+              <vg-mutebutton></vg-mutebutton>
+              <vg-volumebar></vg-volumebar>
+            </vg-volume>
+            <vg-fullscreenButton></vg-fullscreenButton>
+          </vg-controls>
+        </videogular>
+      </div>
+      <div class="normalfeed-action-wrap">
         <ul class="list-inline">
           <li>
-            <a class="btn btn-default" ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><i class="fa fa-heart-o"></i><span class="feed-count">{{feed.likes.length}}</span></a>
-            <a class="btn btn-danger" ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="fa fa-heart"></i><span class="feed-count">{{feed.likes.length}}</span></a>
+            <a class="btn btn-default" ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><span class="feed-count">+{{feed.likes.length}}</span></a>
+            <a class="btn btn-danger" ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><span class="feed-count">+{{feed.likes.length}}</span></a>
 
           </li>
           <li>
-            <a class="btn btn-info" ui-sref="feeddetail({id: feed._id})"><i class="fa fa-comment-o"></i><span class="feed-count">{{feed.comments.length}}</span></a>
+            <a class="btn btn-default" ui-sref="feeddetail({id: feed._id})"><i class="fa fa-comment"></i><span class="feed-count">{{feed.comments.length}}</span></a>
           </li>
           <li>
             <a ui-sref="feeddetail({id: feed._id})" class="sf-feed-wrap-link">详情</a>

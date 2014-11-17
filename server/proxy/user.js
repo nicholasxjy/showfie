@@ -28,3 +28,13 @@ exports.getUserById = function(id, cb) {
 exports.getUserByEmail =  function(email, cb) {
   User.findOne({email: email}, cb);
 };
+
+exports.getFollowersByName = function(name, cb) {
+  User.findOne({username: name}, function(err, user) {
+    if (err) cb(err);
+    var options = [{
+      path: 'followers'
+    }];
+    User.populate(user, options, cb);
+  });
+}

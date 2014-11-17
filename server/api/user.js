@@ -354,6 +354,15 @@ exports.removeFollow = function(req, res, next) {
   });
 }
 
+exports.getFollowers = function(req, res, next) {
+  var username = req.query.username;
+  var page = req.query.page;
+  page = parseInt(page, 10);
+  userQuery.getFollowersByName(username, function(err, user) {
+    if (err) return next(err);
+    return res.json({status: 'success', data: user});
+  });
+}
 
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;

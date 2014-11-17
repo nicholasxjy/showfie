@@ -18,6 +18,9 @@
         </div>
       </div>
     </div>
+    <div class="commentto-content" ng-if="commentTo.touser.username">
+      <a ui-sref="user({name: commentTo.touser.username})">@{{commentTo.touser.username}}</a>{{commentTo.content}}
+    </div>
     <div class="comment-content">
       <textarea class="form-control" rows="4" ng-model="info.content" required placeholder=""></textarea>
     </div>

@@ -23,6 +23,46 @@
     <div ng-if="feed.attachment.type && feed.attachment.type==='image'" class="detail-attachment-wrap">
       <img ng-src="{{feed.attachment.url}}" class="img-responsive">
     </div>
+    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
+      <videogular vg-theme="feed.attachment.config.theme">
+        <vg-video vg-src="feed.attachment.config.sources">
+        </vg-video>
+        <vg-controls>
+          <vg-play-pause-button></vg-play-pause-button>
+          <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+          <vg-scrubBar>
+            <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+          </vg-scrubBar>
+          <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+          <vg-volume>
+            <vg-mutebutton></vg-mutebutton>
+            <vg-volumebar></vg-volumebar>
+          </vg-volume>
+          <vg-fullscreenButton></vg-fullscreenButton>
+        </vg-controls>
+        <vg-overlay-play></vg-overlay-play>
+        <vg-poster-image vg-url='feed.attachment.config.plugins.poster'></vg-poster-image>
+      </videogular>
+    </div>
+    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
+      <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
+        <vg-audio vg-src="feed.attachment.config.sources">
+        </vg-audio>
+        <vg-controls>
+          <vg-play-pause-button></vg-play-pause-button>
+          <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+          <vg-scrubBar>
+            <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+          </vg-scrubBar>
+          <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+          <vg-volume>
+            <vg-mutebutton></vg-mutebutton>
+            <vg-volumebar></vg-volumebar>
+          </vg-volume>
+          <vg-fullscreenButton></vg-fullscreenButton>
+        </vg-controls>
+      </videogular>
+    </div>
     <div class="feed-action-wrap">
       <ul class="list-inline likes-action-wrap">
         <li>
@@ -56,10 +96,13 @@
             <img ng-src="{{comment.author.avatar}}" alt="{{comment.author.username}}" class="img-responsive img-circle">
           </a>
           <div class="media-body">
-            <h4 class="media-heading">{{comment.author.username}}</h4>
+            <p class="comment-top">
+              <strong class="media-heading">{{comment.author.username}}</strong>
+              <time>{{comment.createdAt | date: 'MM-dd hh:ss'}}</time>
+              <span class="fa fa-reply" ng-click="addComment(comment)">回复</span>
+            </p>
             <p class="comment-content"><a ui-sref="user({name: comment.touser.username})">@{{comment.touser.username}}</a>{{comment.content}}</p>
-            <p class="comment-other"><time>{{comment.createdAt | date: 'MM-dd hh:ss'}}</time>
-            <span class="fa fa-reply pull-right" ng-click="addComment(comment)">回复</span></p>
+            <p class="comment-other">
           </div>
         </div>
       </li>

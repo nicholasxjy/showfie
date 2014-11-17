@@ -4,6 +4,9 @@ body {
 .sf-container {
   padding-top: 80px; }
 
+.modal-open {
+  overflow: auto; }
+
 .navbar {
   border-radius: 0; }
 
@@ -77,7 +80,7 @@ body {
   text-align: left; }
   .modal-footer #share-link {
     background-color: #1ABC9C;
-    border-radius: 4px;
+    border-radius: 2px;
     color: #ffffff;
     border: none;
     outline: none;
@@ -94,7 +97,7 @@ body {
     cursor: pointer;
     margin-right: 5px;
     border: 1px solid #ECF0F1;
-    border-radius: 5px; }
+    border-radius: 2px; }
     #create-action-list li a {
       display: block;
       padding: 8px 10px;
@@ -159,7 +162,7 @@ body {
   background: url('../images/bg-auth.jpg');
   text-align: center;
   padding: 20px 30px;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3);
   z-index: 1;
   color: #ffffff; }
@@ -171,18 +174,18 @@ body {
 .sf-card {
   margin-bottom: 20px;
   background-color: #ffffff;
-  border-radius: 5px; }
+  border-radius: 2px; }
 
 /***** user card *****/
 .user-card-banner {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   position: relative; }
   .user-card-banner img {
     height: 150px;
     width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px; }
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px; }
   .user-card-banner .user-setting-link {
     position: absolute;
     top: 8px;
@@ -232,8 +235,8 @@ body {
   .user-card-info ul {
     margin: 0;
     background-color: #ECF0F1;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; }
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px; }
     .user-card-info ul li {
       padding: 0;
       width: 32%; }
@@ -258,19 +261,15 @@ body {
 /******* feed style ******/
 .sf-feed-wrap {
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: 2px;
   margin-bottom: 20px; }
 
 .feed-attach-wrap {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   min-height: 253px;
   max-height: 315px;
   overflow: hidden; }
   .feed-attach-wrap img {
     width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     cursor: zoom-in;
     cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in; }
@@ -301,6 +300,16 @@ body {
       font-weight: 300;
       color: #7F8C8D; }
 
+.normalfeed-action-wrap {
+  margin-top: 10px; }
+  .normalfeed-action-wrap a {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 3px; }
+    .normalfeed-action-wrap a .fa-comment {
+      padding-right: 5px; }
+
 .detail-content-wrap .feed-action-wrap {
   position: relative;
   margin-top: 15px;
@@ -322,7 +331,8 @@ body {
     .detail-content-wrap .feed-action-wrap .likes-wrap a {
       display: block;
       width: 36px;
-      height: 36px; }
+      height: 36px;
+      border-radius: 50%; }
       .detail-content-wrap .feed-action-wrap .likes-wrap a img {
         height: 36px;
         width: 36px; }
@@ -435,7 +445,7 @@ body {
     margin-bottom: 15px;
     z-index: 1200;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 2px;
     background-color: #1ABC9C;
     color: #ffffff;
     line-height: 44px; }
@@ -514,15 +524,33 @@ body {
 .comment-item {
   border-bottom: 1px solid #ECF0F1; }
   .comment-item .media {
-    padding: 6px 4px; }
+    padding: 5px 4px 0 4px;
+    position: relative; }
   .comment-item .media-left img {
-    height: 36px;
-    width: 36px; }
+    height: 30px;
+    width: 30px; }
+  .comment-item p.comment-top {
+    margin-bottom: 2px; }
+    .comment-item p.comment-top strong {
+      font-size: 14px;
+      font-weight: 600; }
+    .comment-item p.comment-top time {
+      font-size: 12px;
+      font-weight: 400;
+      padding-left: 5px; }
+    .comment-item p.comment-top span {
+      display: none;
+      position: absolute;
+      right: 10px;
+      font-size: 13px;
+      font-weight: 400;
+      top: 7px; }
   .comment-item .comment-content {
     margin-bottom: 2px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 24px; }
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px; }
     .comment-item .comment-content a {
       padding-right: 4px; }
   .comment-item .comment-other {
@@ -531,6 +559,40 @@ body {
     line-height: 20px; }
     .comment-item .comment-other span {
       cursor: pointer; }
+
+.comment-item:hover p.comment-top span {
+  display: inline-block; }
+
+.commentto-content {
+  padding-left: 58px;
+  font-size: 13px;
+  font-weight: 400; }
+  .commentto-content a {
+    padding-right: 5px; }
+
+.follow-wrap {
+  padding: 8px 40px;
+  height: 240px;
+  text-align: center;
+  overflow: hidden; }
+  .follow-wrap .follow-avatar {
+    position: relative;
+    height: 100px; }
+    .follow-wrap .follow-avatar img {
+      width: 96px;
+      height: 96px;
+      top: 2px;
+      position: absolute;
+      left: 50%;
+      margin-left: -48px; }
+  .follow-wrap .follow-info p {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px; }
+
+.feed-attachment-wrap audio {
+  height: 50px; }
 
 .welcome-wrap, .login-wrap, .forget-wrap {
   position: fixed;
@@ -547,7 +609,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #cccccc;
+  background-color: #e5e5e5;
   overflow-x: hidden; }
 
 .forget-link {
@@ -642,7 +704,7 @@ body {
   padding-bottom: 15px; }
 
 .feed-content-wrap {
-  padding: 10px 10px 15px 10px; }
+  padding: 10px 10px 5px 10px; }
 
 .photo-wrap {
   padding-left: 10px;

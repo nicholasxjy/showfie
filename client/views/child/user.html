@@ -37,14 +37,15 @@
             </li>
           </ul>
         </header>
-        <div class="user-divider">
-          <a ui-sref="user({name: user.username})">{{user.username}}'s Showfies</a>
-        </div>
-
-        <div class="user-feeds-wrap container">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2 sf-user-middle">
-              <div ng-include="'views/partials/user-feed.html'"></div>
+        <div ui-view>
+          <div class="user-divider">
+            <a ui-sref="user({name: user.username})">{{user.username}}'s Showfies</a>
+          </div>
+          <div class="user-feeds-wrap container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 sf-user-middle">
+                <div ng-include="'views/partials/user-feed.html'"></div>
+              </div>
             </div>
           </div>
         </div>
