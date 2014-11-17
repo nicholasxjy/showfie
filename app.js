@@ -41,12 +41,12 @@ route(app);
 //static
 app.use(express.static(path.join(__dirname, 'client')));
 
-//catch 404 error
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// //catch 404 error
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 app.listen(1337, function() {
   console.log('The serve is listening on port 1337!');

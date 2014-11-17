@@ -17,7 +17,6 @@
       $scope.audioDisable = false;
 
       $scope.submitNewFeed = function(feedInfo) {
-        $scope.spinnerShow = true;
         if (feedInfo && feedInfo.content) {
           $scope.feed.content = feedInfo.content;
         } else {
@@ -34,7 +33,6 @@
         })
         .success(function(res) {
           if (res.status === 'success') {
-            $scope.spinnerShow = false;
             //here reset all
             $scope.hasAttachment = false;
             $scope.photoDisable = false;

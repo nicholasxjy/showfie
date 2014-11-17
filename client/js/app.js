@@ -11,6 +11,7 @@
 angular
   .module('showfieApp', [
     'ngAnimate',
+    'angular-loading-bar',
     'angularFileUpload',
     'ui.router',
     'ngDialog',
