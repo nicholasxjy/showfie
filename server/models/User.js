@@ -49,7 +49,7 @@ var UserSchema = new Schema({
     ref: 'User'
   }],
   notification: [{
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, //this only notis that user unread, should pull when user already read it
     ref: 'Notification'
   }],
   createdAt: {

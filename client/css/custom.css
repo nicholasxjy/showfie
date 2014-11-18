@@ -594,6 +594,18 @@ body {
 .feed-attachment-wrap audio {
   height: 50px; }
 
+/******* notification *****/
+.noti-wrap {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+
+.like-noti-wrap ul, .follow-noti-wrap ul {
+  margin-bottom: 0; }
+.like-noti-wrap img, .follow-noti-wrap img {
+  width: 40px;
+  height: 40px; }
+
 .welcome-wrap, .login-wrap, .forget-wrap {
   position: fixed;
   top: 0;

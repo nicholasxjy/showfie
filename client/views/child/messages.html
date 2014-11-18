@@ -1,0 +1,63 @@
+<div class="sf-wrap">
+  <div class="home-wrap">
+    <div ng-include="'views/partials/navbar.html'"></div>
+    <div class="sf-content">
+      <div class="container sf-container">
+        <div class="row">
+          <div class="col-md-3 sf-left-wrap">
+            <div ng-include="'views/partials/user-card.html'"></div>
+          </div>
+          <div class="col-md-6 sf-mid-wrap">
+            <div class="panel panel-default">
+              <div class="panel-heading">您的所有消息</div>
+              <div class="panel-body">
+                <p ng-if="!likeNotis.length && !followNotis.length && !commentNotis.length">没有任何消息!</p>
+                <div class="like-noti-wrap noti-wrap" ng-if="likeNotis.length">
+                  <p>他们赞了你的Feeds</p>
+                  <ul class="list-inline">
+                    <li ng-repeat="noti in likeNotis">
+                      <a ui-sref="user({name: noti.author.username})" sftitle="{{noti.author.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
+                        <img ng-src="{{noti.author.avatar}}" class="img-responsive img-circle">
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="follow-noti-wrap noti-wrap" ng-if="followNotis.length">
+                  <p>这些人关注了您</p>
+                  <ul class="list-inline">
+                    <li ng-repeat="noti in followNotis">
+                      <a ui-sref="user({name: noti.author.username})" sftitle="{{noti.author.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
+                        <img ng-src="{{noti.author.avatar}}" class="img-responsive img-circle">
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="noti-wrap comment-noti-wrap" ng-if="commentNotis.length">
+                  <p>您有以下评论回复</p>
+                  <ul class="list-unstyled">
+                    <li class="comment-item" ng-repeat="noti in commentNotis">
+                      <div class="media">
+                        <a class="media-left" ui-sref="user({name: noti.author.username})">
+                          <img ng-src="{{noti.author.avatar}}" alt="{{noti.author.username}}" class="img-responsive img-circle">
+                        </a>
+                        <div class="media-body">
+                          <p class="comment-top">
+                            <strong class="media-heading">{{noti.author.username}}</strong>
+                            <time>{{noti.comment.createdAt | date: 'MM-dd hh:ss'}}</time>
+                          </p>
+                          <p class="comment-content"><a ui-sref="user({name: noti.master.username})">@{{noti.master.username}}</a>{{noti.comment.content}}</p>
+                          <p class="comment-other">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-include="'views/partials/create-modal.html'"></div>
+  </div>
+</div>

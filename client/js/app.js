@@ -48,6 +48,11 @@ angular
           templateUrl: 'views/child/forgetpass.html',
           controller: 'ForgetPassController'
         })
+        .state('messages', {
+          url: '/messages',
+          templateUrl: 'views/child/messages.html',
+          controller: 'MessageController'
+        })
         .state('settings', {
           templateUrl: 'views/child/settings.html',
           controller: 'SettingController'
@@ -81,11 +86,6 @@ angular
           url: '/gallery',
           templateUrl: 'views/child/gallery.html',
           controller: 'GalleryController'
-        })
-        .state('user.messages', {
-          url: '/messages',
-          templateUrl: 'views/child/messages.html',
-          controller: 'MessageController'
         })
         .state('user.followers', {
           url: '/followers',

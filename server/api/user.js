@@ -6,7 +6,7 @@ var feedQuery = require('../proxy/feed');
 var notiQuery = require('../proxy/notification');
 var async = require('async');
 var qiniuService = require('../services/qiniu');
-
+var _ = require('underscore');
 
 exports.signUp = function(req, res, next) {
   var username = req.body.username;
@@ -404,6 +404,49 @@ exports.getFollowings = function(req, res, next) {
     return res.json({status: 'success', data: user});
   });
 }
+
+exports.getMessages = function(req, res, next) {
+  //when user check their messages, remove the unread in the meantime
+  var sess = req.session;
+  if (!sess || !sess.user) {
+    return res.status(403).send('login first');
+  }
+  async.parallel(
+    [
+      function(cb1) {
+        userQuery.getUserById(req.session.user._id, function(err, user) {
+          if (err) cb1(err);
+          user.notification = [];
+          user.save(function(err, newUser) {
+            if (err) cb1(err);
+            cb1(null, newUser);
+          })
+        })
+      },
+      function(cb2) {
+        notiQuery.getNotificationByUser(req.session.user._id, function(err, notis) {
+          if (err) return cb2(err);
+          cb2(null, notis);
+        });
+      }
+    ], function(err, results) {
+      if (err) return next(err);
+      if (results && results.length === 2) {
+        var allNotis = results[1];
+        var likeNotis = _.filter(allNotis, function(item) {
+          return item.type === 'like';
+        });
+        var followNotis = _.filter(allNotis, function(item) {
+          return item.type === 'follow';
+        });
+        var commentNotis = _.filter(allNotis, function(item) {
+          return item.type === 'comment';
+        });
+        return res.json({status: 'success', user: results[0], likes: likeNotis, follows: followNotis, comments: commentNotis});
+      }
+    });
+}
+
 exports.getCurrentUser = function(req, res, next) {
   var sess = req.session;
   if (sess && sess.user) {

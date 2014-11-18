@@ -28,6 +28,7 @@ var route = function(app) {
 
   app.get('/user/followers', userApi.getFollowers);
   app.get('/user/followings', userApi.getFollowings);
+  app.get('/user/messages', userApi.getMessages);
 }
 
 module.exports = route;

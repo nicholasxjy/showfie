@@ -13,6 +13,7 @@
           updateInfo: updateUserInfo,
           getCurrentUser: getCurrentUser,
           getUserPageData: getUserPageData,
+          getUserMessages: getUserMessages,
           getUserFollowers: getUserFollowers,
           getUserFollowings: getUserFollowings,
           addFollow: addFollow,
@@ -53,6 +54,9 @@
               page: page
             }
           });
+        }
+        function getUserMessages() {
+          return $http.get('/user/messages');
         }
         function getUserFollowers(name, page) {
           return $http.get('/user/followers', {
