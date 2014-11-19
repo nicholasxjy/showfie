@@ -32,6 +32,7 @@
     "videogular-themes-default": "~0.7.0",
     "videogular-controls": "~0.7.0",
     "videogular-poster": "~0.7.0",
-    "angular-loading-bar": "~0.6.0"
+    "angular-loading-bar": "~0.6.0",
+    "angular-material": "~0.5.1"
   }
 }
