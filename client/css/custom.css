@@ -415,17 +415,18 @@ td, th {
   border-radius: 6px;
   background-clip: padding-box;
   background-color: #ffffff; }
-  .login-inner .close-wrap {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    right: 5px;
-    top: 5px; }
-    .login-inner .close-wrap a {
-      display: block;
-      font-size: 22px;
-      line-height: 30px;
-      text-decoration: none; }
+
+.close-wrap {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px; }
+  .close-wrap a {
+    display: block;
+    font-size: 22px;
+    line-height: 30px;
+    text-decoration: none; }
 
 .other-auth-login {
   margin-top: 15px; }
@@ -488,3 +489,26 @@ td, th {
   margin: 30px auto;
   max-width: 260px;
   min-width: 258px; }
+
+.forget-container {
+  background-image: url('../images/banner.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.forget-inner {
+  width: 300px;
+  height: 170px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -85px;
+  margin-left: -150px;
+  text-align: center;
+  background-color: #ffffff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-clip: padding-box; }
+  .forget-inner .sf-form-container {
+    margin-top: 45px; }
