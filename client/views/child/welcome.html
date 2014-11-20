@@ -1,18 +1,18 @@
 <div class="sf-wrap">
-  <div class="welcome-wrap">
-    <div class="welcome-inner">
-      <div class="auth-wrap animated zoomIn">
-        <div class="atuh-content">
-          <div class="auth-title">
+  <div class="sf-container welcome-container">
+    <div class="welcome-inner animated zoomIn">
+      <div class="sf-form-wrap">
+        <div class="sf-form-content">
+          <div class="sf-form-title">
             <h1>Showfie</h1>
           </div>
-          <div class="auth-subtitle">
+          <div class="sf-form-subtitle">
             They used to Pinterest plan a dream trip.
           </div>
-          <div class="auth-subcontent">
+          <div class="sf-form-subcontent">
             Join Showfie to show the best and beautiful that inspire others.
           </div>
-          <div class="sf-authform-wrap">
+          <div class="sf-form-container">
             <form novalidate name="signUpForm" ng-submit="submitSignUpForm(user)">
             <div class="form-group">
               <input type="text" class="form-control" ng-model="user.username"
@@ -26,7 +26,7 @@
                 <input type="password" class="form-control" ng-model="user.password"
                 placeholder="Password" ng-minlength="6" ng-maxlength="30" required>
               </div>
-              <button class="btn btn-primary btn-block" type="submit"
+              <button class="btn btn-primary btn-block sf-btn-primary" type="submit"
               ng-disabled="signUpForm.$invalid">
                 Sign Up
               </button>
