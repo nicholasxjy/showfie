@@ -1,3 +1,31 @@
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-style: normal; }
+
+.form-control {
+  height: 38px;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 500; }
+
+.btn {
+  padding: 8px 12px; }
+
+.sf-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.sf-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 900; }
+
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -319,7 +347,6 @@ table {
 td, th {
   padding: 0; }
 
-/****** color design ********/
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Thin.ttf');
@@ -340,7 +367,40 @@ td, th {
   src: url('../fonts/Roboto/Roboto-Medium.ttf');
   font-weight: 500; }
 
-body {
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-style: normal; }
+.welcome-container {
+  background-image: url('../images/welcome-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.welcome-inner {
+  height: 420px;
+  width: 680px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -210px;
+  margin-left: -340px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -5px 8px rgba(0, 0, 0, 0.3);
+  background-image: url('../images/bg-auth.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+  text-align: center; }
+
+.sf-form-wrap {
+  height: 100%;
+  width: 100%;
+  padding: 20px 30px; }
+
+.sf-form-container {
+  margin: 30px auto;
+  max-width: 260px;
+  min-width: 258px; }
