@@ -395,6 +395,90 @@ td, th {
   color: #ffffff;
   text-align: center; }
 
+.login-container {
+  background-image: url('../images/banner.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.login-inner {
+  height: 440px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -220px;
+  margin-left: -150px;
+  text-align: center;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background-clip: padding-box;
+  background-color: #ffffff; }
+  .login-inner .close-wrap {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 5px;
+    top: 5px; }
+    .login-inner .close-wrap a {
+      display: block;
+      font-size: 22px;
+      line-height: 30px;
+      text-decoration: none; }
+
+.other-auth-login {
+  margin-top: 15px; }
+  .other-auth-login .other-auth-title {
+    margin-bottom: 10px; }
+
+.third-auth ul {
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+  .third-auth ul li {
+    padding: 0; }
+    .third-auth ul li a {
+      display: block;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      background-clip: padding-box;
+      color: #ffffff; }
+      .third-auth ul li a.third-auth-weibo {
+        background-color: #ee3a43; }
+      .third-auth ul li a.third-auth-qq {
+        background-color: #0fa6d1; }
+      .third-auth ul li a.third-auth-weixin {
+        background-color: #81bb11; }
+  .third-auth ul li:nth-child(2) {
+    margin-left: 8px;
+    margin-right: 8px; }
+
+.login-banner {
+  height: 90px;
+  position: relative;
+  margin-bottom: 15px; }
+  .login-banner img {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    margin-left: -40px; }
+
+.login-form .form-group {
+  position: relative; }
+  .login-form .form-group .login-field-icon {
+    position: absolute;
+    top: 12px;
+    right: 8px; }
+  .login-form .form-group .form-control {
+    padding-right: 24px; }
+
 .sf-form-wrap {
   height: 100%;
   width: 100%;
