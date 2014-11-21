@@ -8,7 +8,7 @@
                 <form novalidate name="forgetForm" class="login-form" ng-submit="submitforgetForm(user)">
                     <div class="form-group">
                         <input type="email" class="form-control login-field" ng-model="user.email" placeholder="Your Email" required>
-                        <label for="login-email" class="login-field-icon icon-envelope"></label>
+                        <label for="login-email" class="login-field-icon icon-mail"></label>
                     </div>
                     <button class="btn btn-block btn-success" type="submit" ng-disabled="forgetForm.$invalid">Submit</button>
                     <p class="td-success animated zoomIn" ng-show="isSucceed">{{successMessage}}</p>

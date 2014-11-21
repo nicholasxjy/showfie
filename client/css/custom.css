@@ -1,31 +1,3 @@
-body {
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-style: normal; }
-
-.form-control {
-  height: 38px;
-  padding: 10px 10px;
-  font-size: 14px;
-  font-weight: 500; }
-
-.btn {
-  padding: 8px 12px; }
-
-.sf-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%; }
-
-.sf-container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #ffffff;
-  z-index: 900; }
-
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -367,6 +339,50 @@ td, th {
   src: url('../fonts/Roboto/Roboto-Medium.ttf');
   font-weight: 500; }
 
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-style: normal; }
+
+.form-control {
+  height: 38px;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 500; }
+
+.btn {
+  padding: 8px 12px; }
+
+.dropdown-menu > li > a {
+  color: #2C3E50; }
+  .dropdown-menu > li > a:hover {
+    color: #2C3E50; }
+
+.sf-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.sf-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 900; }
+
+.sf-container-inner {
+  padding: 80px 30px 30px 30px; }
+
+.sf-card-inner {
+  margin: 0 25px 20px 25px;
+  border: 1px solid #ECF0F1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-clip: padding-box; }
+
 .welcome-container {
   background-image: url('../images/welcome-bg.jpg');
   background-size: cover;
@@ -512,3 +528,102 @@ td, th {
   background-clip: padding-box; }
   .forget-inner .sf-form-container {
     margin-top: 45px; }
+
+/******* navbar custom *******/
+#navbar-right-dropdown {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+  #navbar-right-dropdown:hover {
+    -webkit-animation: pulse 0.6s ease;
+    -moz-animation: pulse 0.6s ease;
+    -ms-animation: pulse 0.6s ease;
+    -o-animation: pulse 0.6s ease;
+    animation: pulse 0.6s ease; }
+  #navbar-right-dropdown img {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ffffff; }
+
+#share-link {
+  padding-top: 8px; }
+  #share-link a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-clip: padding-box;
+    background-color: #ee3a43; }
+    #share-link a:hover {
+      -webkit-animation: tada 0.8s ease;
+      -moz-animation: tada 0.8s ease;
+      -ms-animation: tada 0.8s ease;
+      -o-animation: tada 0.8s ease;
+      animation: tada 0.8s ease; }
+
+/********* user card *******/
+.user-card {
+  height: 100%; }
+
+.user-card-banner {
+  position: relative;
+  max-height: 186px;
+  overflow: hidden; }
+  .user-card-banner img {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+  .user-card-banner a.user-setting-link {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+    .user-card-banner a.user-setting-link:hover {
+      color: #ee3a43; }
+
+.user-card-info {
+  position: relative;
+  height: 100%; }
+  .user-card-info img.user-card-avatar {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    top: -45px;
+    left: 15px;
+    border: 3px solid #ffffff; }
+  .user-card-info ul {
+    padding: 0;
+    margin: 0; }
+
+.user-info-wrap {
+  height: 60px;
+  margin-left: 125px; }
+  .user-info-wrap .user-name a {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #34495E; }
+  .user-info-wrap .user-gender-location {
+    color: #BDC3C7;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px; }
+    .user-info-wrap .user-gender-location i {
+      padding-right: 2px;
+      font-size: 14px; }
+    .user-info-wrap .user-gender-location .icon-head {
+      color: #0fa6d1; }
+    .user-info-wrap .user-gender-location .icon-map-marker {
+      padding-left: 8px;
+      color: #ee3a43; }
+
+.user-profile {
+  padding: 0 15px 8px 15px;
+  font-size: 13px;
+  line-height: 18px; }
