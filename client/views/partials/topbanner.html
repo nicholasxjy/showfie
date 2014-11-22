@@ -1,0 +1,15 @@
+<div class="sf-topbanner">
+  <div class="sf-topbanner-inner">
+    <img ng-src={{user.banner}} class="user-banner">
+    <div class="banner-blur-wrap" scroll-blur-effect>
+      <img ng-src="{{user.bannerblur}}" alt="">
+    </div>
+    <div class="topbanner-action">
+      <div class="topbanner-action-inner">
+        <a class="sidebar-toggle icon-menu" ng-click="showUserInfo()"></a>
+        <a ui-sref="messages" class="icon-bell"><span class="badge" ng-if="user.notification.length">{{user.nitrification.length}}</span></a>
+        <a ui-sref="search" class="icon-search"></a>
+      </div>
+    </div>
+  </div>
+</div>

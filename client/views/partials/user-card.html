@@ -24,20 +24,23 @@
         <ul class="list-inline">
           <li>
             <a ui-sref="user({name: user.username})">
-              <span class="user-feed-count">{{postcount}}</span>
               <span class="user-feed-title">posts</span>
+              <span class="user-feed-count">{{postcount}}</span>
+
             </a>
           </li>
           <li>
             <a ui-sref="user.followers({name: user.username})">
+            <span class="user-feed-title">followers</span>
               <span class="user-feed-count">{{user.followers.length}}</span>
-              <span class="user-feed-title">followers</span>
+
             </a>
           </li>
           <li>
             <a ui-sref="user.followings({name: user.username})">
+            <span class="user-feed-title">following</span>
               <span class="user-feed-count">{{user.followings.length}}</span>
-              <span class="user-feed-title">following</span>
+
             </a>
           </li>
         </ul>
