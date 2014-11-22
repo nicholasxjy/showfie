@@ -11,6 +11,7 @@
       homeCtrl
     ]);
     function homeCtrl($scope, UserService, FeedService, $state, $sce) {
+      $scope.userInfoState = false;
       UserService.getCurrentUser()
         .then(function(resUser) {
           if (resUser.status === 200 && resUser.data) {
@@ -26,7 +27,12 @@
         loadFeeds(1);
         $scope.user.postcount = $scope.user.postcount + 1;
       });
-
+      $scope.showUserInfo = function() {
+        $scope.userInfoState = !$scope.userInfoState;
+      }
+      $scope.hideUserInfo = function() {
+        $scope.userInfoState = false;
+      }
       $scope.submitFollow = function(feed) {
         UserService.addFollow(feed.author._id)
           .then(function(res) {
