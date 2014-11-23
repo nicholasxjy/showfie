@@ -18,13 +18,15 @@
             $scope.user = resUser.data.data;
             console.log($scope.user);
             $scope.postcount = resUser.data.userpostcount;
-            loadFeeds(1);
+            $scope.currentPage = 0;
+            $scope.feeds = [];
+            // loadFeeds($scope.currentPage);
           } else {
             $state.go('login');
           }
         })
       $scope.$on('feed:new', function(evt) {
-        loadFeeds(1);
+        loadFeeds($scope.currentPage);
         $scope.user.postcount = $scope.user.postcount + 1;
       });
       $scope.showUserInfo = function() {
@@ -77,6 +79,15 @@
             console.log(err);
           })
       }
+
+      $scope.nextPage = function() {
+        console.log('load more');
+        if ($scope.loadBusy) return;
+        $scope.loadBusy = true;
+        $scope.currentPage = $scope.currentPage + 1;
+        loadFeeds($scope.currentPage);
+      }
+
       function loadFeeds(currentPage) {
         FeedService.getAllFeeds(currentPage)
           .then(function(res) {
@@ -108,7 +119,10 @@
                 }
               }
             });
-            $scope.feeds = feeds;
+            $scope.feeds = $scope.feeds.concat(feeds);
+
+            $scope.loadBusy = false;
+
             console.log(feeds);
           }, function(err) {
             console.log(err);

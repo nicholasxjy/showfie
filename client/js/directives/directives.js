@@ -7,9 +7,9 @@
       return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-          $(window).scroll(function() {
+          $('.shrinkwrap').scroll(function() {
             var oVal;
-            oVal = $(window).scrollTop()/170;
+            oVal = $('.shrinkwrap').scrollTop()/170;
             $(element).css('opacity', oVal);
           })
         }
