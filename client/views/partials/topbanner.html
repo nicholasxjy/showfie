@@ -7,7 +7,7 @@
     <div class="topbanner-action">
       <div class="topbanner-action-inner">
         <a class="sidebar-toggle icon-menu" ng-click="showUserInfo()"></a>
-        <a ui-sref="messages" class="icon-bell"><span class="badge" ng-if="user.notification.length">{{user.nitrification.length}}</span></a>
+        <a ui-sref="messages" class="icon-bell"><span class="badge user-notification" ng-if="user.notification.length">{{user.notification.length}}</span></a>
         <a ui-sref="search" class="icon-search"></a>
       </div>
     </div>

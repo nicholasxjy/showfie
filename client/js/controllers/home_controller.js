@@ -3,14 +3,16 @@
   angular
     .module('app.controllers')
     .controller('HomeController', [
+      '$rootScope',
       '$scope',
       'UserService',
       'FeedService',
       '$state',
       '$sce',
+      'ngDialog',
       homeCtrl
     ]);
-    function homeCtrl($scope, UserService, FeedService, $state, $sce) {
+    function homeCtrl($rootScope, $scope, UserService, FeedService, $state, $sce, ngDialog) {
       $scope.userInfoState = false;
       UserService.getCurrentUser()
         .then(function(resUser) {
@@ -25,7 +27,7 @@
             $state.go('login');
           }
         })
-      $scope.$on('feed:new', function(evt) {
+      $rootScope.$on('feed:new', function(evt) {
         loadFeeds($scope.currentPage);
         $scope.user.postcount = $scope.user.postcount + 1;
       });
@@ -87,6 +89,15 @@
         $scope.currentPage = $scope.currentPage + 1;
         loadFeeds($scope.currentPage);
       }
+
+
+      $scope.createNewFeed = function() {
+        ngDialog.open({
+          template:'views/partials/create-feed.html',
+          controller: 'CreateFeedController'
+        })
+      }
+
 
       function loadFeeds(currentPage) {
         FeedService.getAllFeeds(currentPage)

@@ -3,13 +3,16 @@
     <div class="user-wrap">
       <div class="user-avatar">
         <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
-      </div>
-      <div class="user-info">
-        <h4><a ui-sref="user({name: user.username})">{{user.username}}</a></h4>
-        <div class="gender-location">
-          <i class="icon-head"></i><span>{{user.gender}}</span>
-          <i class="icon-map-marker"></i><span>{{user.location}}</span>
+        <div class="user-info">
+          <h4><a ui-sref="user({name: user.username})">{{user.username}}</a></h4>
+          <div class="gender-location">
+            <i class="icon-head"></i><span>{{user.gender}}</span>
+            <i class="icon-map-marker"></i><span>{{user.location}}</span>
+          </div>
         </div>
+      </div>
+      <div class="user-profile">
+        {{user.profile}}
       </div>
       <ul class="list-unstyled">
         <li>

@@ -7,10 +7,11 @@
       '$upload',
       '$timeout',
       '$state',
+      'ngDialog',
       createCtrl
     ]);
 
-    function createCtrl($scope, $upload, $timeout, $state) {
+    function createCtrl($scope, $upload, $timeout, $state, ngDialog) {
       $scope.hasAttachment = false;
       $scope.photoDisable = false;
       $scope.videoDisable = false;
@@ -41,8 +42,7 @@
             $scope.feed.content = '';
             $scope.selectedFiles = null;
             $scope.dataUrls = null;
-            //here stupid code
-            $('#create-feed-modal').modal('hide');
+            ngDialog.close('ngdialog1');
             $scope.$emit('feed:new');
             $state.go('home');
           }
