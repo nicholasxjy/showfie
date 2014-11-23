@@ -2,12 +2,10 @@
   <div class="home-wrap sf-container">
     <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()">
     </div>
-    <div ng-include="'views/partials/sfwrap.html'"></div>
+    <div ng-include="'views/partials/sidebar.html'"></div>
     <div class="shrinkwrap" ng-class="{shrunk: userInfoState}">
       <div ng-include="'views/partials/topbanner.html'"></div>
-      <div class="container-fluid">
-        <div ng-include="'views/partials/feed.html'"></div>
-      </div>
+      <div ng-include="'views/partials/feed.html'"></div>
     </div>
   </div>
 </div>
