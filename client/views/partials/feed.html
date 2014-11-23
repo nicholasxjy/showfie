@@ -65,7 +65,9 @@ infinite-scroll-distance="2">
           <p>{{feed.content}}</p>
         </div>
         <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
-          <img ng-src="{{feed.attachment.url}}" class="img-responsive">
+          <a imgurl="{{feed.attachment.url}}" class="fancybox" title="{{feed.attachment.name}}" fancy-box>
+            <img ng-src="{{feed.attachment.url}}" class="img-responsive">
+          </a>
         </div>
         <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
           <videogular vg-theme="feed.attachment.config.theme">
