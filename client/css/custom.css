@@ -1187,5 +1187,112 @@ img.author-avatar {
   margin-bottom: 50px;
   color: #ffffff; }
 
+.timeline-item-list {
+  margin-top: 30px; }
+
+.timeline-item-container {
+  width: 560px;
+  height: 638px;
+  margin: 28px auto;
+  position: relative; }
+
+.timeline-top-icon {
+  text-align: center; }
+  .timeline-top-icon span {
+    padding: 11px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-clip: padding-box;
+    background-color: #ee3a43;
+    color: #ffffff;
+    font-size: 22px; }
+    .timeline-top-icon span.icon-paper {
+      background-color: #bdc3c7; }
+    .timeline-top-icon span.icon-image {
+      background-color: #0fa6d1; }
+    .timeline-top-icon span.icon-microphone {
+      background-color: #f8c82d; }
+
+.line {
+  width: 2px;
+  height: 588px;
+  background-color: #ecf0f1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+  position: absolute;
+  left: 50%;
+  margin-left: -1px;
+  top: 50px;
+  z-index: 1100; }
+
+.timeline-feed-content {
+  background-color: #ffffff;
+  position: absolute;
+  width: 100%;
+  top: 140px;
+  z-index: 1200; }
+
+.timeline-feed-inner {
+  height: 100%;
+  padding: 16px; }
+
+.timeline-author-info {
+  position: relative; }
+  .timeline-author-info img {
+    width: 60px;
+    height: 60px; }
+
+.timeline-attachment {
+  max-height: 235px;
+  overflow: hidden; }
+  .timeline-attachment img {
+    width: 100%; }
+
+.timeline-author-other {
+  position: absolute;
+  top: 3px;
+  margin-left: 80px; }
+
+.timeline-words {
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 12px;
+  padding-left: 3px;
+  margin-bottom: 8px; }
+
+.timeline-time {
+  position: absolute;
+  top: -60px;
+  left: 30%;
+  z-index: 1200px; }
+  .timeline-time .year {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff; }
+  .timeline-time .hour {
+    font-size: 16px;
+    font-weight: 300;
+    color: #ffffff; }
+
+.timeline-like-comment {
+  height: 30px;
+  margin-top: 10px;
+  padding-left: 8px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #8a9398; }
+  .timeline-like-comment i {
+    position: relative;
+    top: 3px;
+    padding-right: 8px; }
+    .timeline-like-comment i.icon-speech-bubble {
+      padding-left: 15px; }
+  .timeline-like-comment span {
+    font-size: 14px;
+    font-weight: 500; }
+
 /******* navbar custom *******/
 /********* user card *******/
