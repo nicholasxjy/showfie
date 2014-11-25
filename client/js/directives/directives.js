@@ -42,12 +42,4 @@
         }
       }
     })
-    .directive('scrollReveal', function() {
-      return {
-        restrict: 'AE',
-        link: function(scope, element, attrs) {
-          window.sr = new scrollReveal();
-        }
-      }
-    })
 })();

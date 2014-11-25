@@ -1,21 +1,23 @@
 <div class="sf-wrap">
-  <div class="home-wrap">
-    <div ng-include="'views/partials/navbar.html'"></div>
-    <div class="sf-content">
-      <div class="container sf-container">
-        <div class="row">
-          <div class="col-md-3 sf-left-wrap">
-            <div ng-include="'views/partials/user-card.html'"></div>
+  <div class="home-wrap sf-container">
+    <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()">
+    </div>
+    <div ng-include="'views/partials/sidebar.html'"></div>
+    <div class="shrinkwrap" ng-class="{shrunk: userInfoState}">
+      <div class="detail-container">
+        <img ng-src="{{feed.author.banner}}" class="timeline-bg">
+        <div class="timeline-overlay"></div>
+        <div class="topbanner-action">
+          <div class="topbanner-action-inner">
+            <a class="sidebar-toggle icon-menu" ng-click="showUserInfo()"></a>
+            <a ui-sref="messages" class="icon-bell"><span class="badge user-notification" ng-if="user.notification.length">{{user.notification.length}}</span></a>
+            <a ui-sref="search" class="icon-search"></a>
           </div>
-          <div class="col-md-6 sf-mid-wrap">
-            <div ng-include="'views/partials/feed-detail-info.html'"></div>
-          </div>
-          <div class="col-md-3 sf-right-wrap">
-
-          </div>
+        </div>
+        <div class="detail-content">
+          <div ng-include="'views/partials/feed-detail-info.html'"></div>
         </div>
       </div>
     </div>
-    <div ng-include="'views/partials/create-modal.html'"></div>
   </div>
 </div>
