@@ -358,6 +358,13 @@ body {
   .dropdown-menu > li > a:hover {
     color: #2C3E50; }
 
+.modal-backdrop {
+  bottom: 0; }
+
+.modal-dialog {
+  width: 380px;
+  margin-top: 200px; }
+
 .create-btn {
   display: block;
   width: 50px;
@@ -1294,5 +1301,143 @@ img.author-avatar {
     font-size: 14px;
     font-weight: 500; }
 
-/******* navbar custom *******/
-/********* user card *******/
+/******* author info *******/
+.author-info-body {
+  padding: 0; }
+  .author-info-body .modal-banner {
+    max-height: 180px;
+    overflow: hidden; }
+    .author-info-body .modal-banner img {
+      height: 150px;
+      width: 100%; }
+  .author-info-body .follow-btn {
+    position: absolute;
+    right: 20px;
+    top: 100px; }
+  .author-info-body .modal-author {
+    position: relative; }
+    .author-info-body .modal-author img {
+      width: 80px;
+      height: 80px;
+      border: 3px solid #ffffff;
+      position: absolute;
+      top: -30px;
+      left: 20px; }
+    .author-info-body .modal-author .modal-author-name {
+      margin-left: 110px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8a9398; }
+      .author-info-body .modal-author .modal-author-name h5 {
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0;
+        padding-top: 4px;
+        padding-bottom: 5px;
+        padding-left: 3px;
+        color: #2C3E50; }
+      .author-info-body .modal-author .modal-author-name i {
+        font-size: 16px;
+        padding-right: 5px; }
+      .author-info-body .modal-author .modal-author-name .icon-head {
+        color: #0fa6d1; }
+      .author-info-body .modal-author .modal-author-name .icon-map-marker {
+        color: #ee3a43;
+        padding-left: 10px; }
+  .author-info-body .author-profile {
+    padding: 15px 15px 15px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 18px;
+    color: #8a9398; }
+
+/********** detail feed *********/
+.detail-content {
+  width: 670px;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  margin-left: -335px;
+  background-color: #ffffff;
+  z-index: 1100; }
+
+.feed-detail-content {
+  padding: 30px 40px; }
+
+.detail-author-top {
+  position: relative;
+  height: 90px; }
+  .detail-author-top img {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 5px; }
+  .detail-author-top .follow-btn {
+    position: absolute;
+    top: 5px;
+    right: 15px; }
+
+.detail-author-info {
+  position: absolute;
+  left: 90px;
+  top: 11px; }
+  .detail-author-info .author-name a {
+    font-size: 22px;
+    font-weight: 500;
+    color: #2C3E50; }
+  .detail-author-info .feed-time {
+    font-size: 14px;
+    font-weight: 300;
+    color: #8a9398;
+    margin-top: 5px; }
+
+.feed-content {
+  font-size: 18px;
+  font-weight: 300;
+  color: #8a9398;
+  line-height: 24px; }
+
+.detail-attachment-wrap {
+  width: 100%; }
+  .detail-attachment-wrap img {
+    width: 100%; }
+
+.likes-wrap {
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  overflow: hidden;
+  padding: 16px 8px;
+  border-top: 1px solid #e1e8ed;
+  border-bottom: 1px solid #e1e8ed;
+  height: 58px; }
+  .likes-wrap img {
+    height: 24px;
+    width: 24px; }
+
+.likes-title a {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #2C3E50; }
+
+.like-users {
+  float: right; }
+
+.likes-action-wrap {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding-left: 25px; }
+  .likes-action-wrap a {
+    font-size: 20px;
+    font-weight: 500;
+    color: #8a9398;
+    line-height: 20px; }
+    .likes-action-wrap a span {
+      font-size: 13px;
+      padding-left: 8px;
+      position: relative;
+      bottom: 5px; }
+  .likes-action-wrap .comment-action {
+    margin-left: 20px; }

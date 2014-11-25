@@ -9,47 +9,39 @@ infinite-scroll-distance="2">
           <div class="feed-author-top">
             <a data-toggle="modal" data-target="#{{feed.author._id}}"><img ng-src="{{feed.author.avatar}}" class="img-responsive img-circle author-avatar">
             </a>
-            <div class="modal fade show-user-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="{{feed.author._id}}">
+            <div class="modal fade" id="{{feed.author._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">{{feed.author.username}}的个人资料</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{feed.author.username}} 的个人资料</h4>
                   </div>
-                  <div class="modal-body">
-                    <div class="show-profile-banner">
-                      <img ng-src="{{feed.author.banner}}">
+                  <div class="modal-body author-info-body">
+                    <div class="modal-banner">
+                      <img ng-src="{{feed.author.banner}}" class="img-responsive">
                     </div>
-                    <div class="show-profile-avatar">
-                      <img ng-src="{{feed.author.avatar}}" class="img-responsive img-rounded">
-                      <div class="show-user-follow">
-                        <ul class="list-inline">
-                          <li>
-                            <a ui-sref="user.followers({name: feed.author.username})">
-                              <span class="user-feed-title">followers</span>
-                              <span class="user-feed-count">{{feed.author.followers.length}}</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a ui-sref="user.followings({name: feed.author.username})">
-                              <span class="user-feed-title">following</span>
-                              <span class="user-feed-count">{{feed.author.followings.length}}</span>
-                            </a>
-                          </li>
-                        </ul>
+                    <button class="btn btn-primary follow-btn" ng-click="submitFollow(feed)" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) === -1)">加入关注</button>
+                    <button class="btn btn-danger follow-btn" ng-click="submitUnfollow(feed)" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) !== -1)">取消关注</button>
+                    <div class="modal-info-content">
+                      <div class="modal-author">
+                        <img ng-src="{{feed.author.avatar}}" class="img-responsive img-circle">
+                        <div class="modal-author-name">
+                          <h5>{{feed.author.username}}</h5>
+                          <div class="author-gender-location">
+                            <i class="icon-head"></i><span>{{feed.author.gender}}</span>
+                            <i class="icon-map-marker"></i><span>{{feed.author.location}}</span>
+                          </div>
+                        </div>
                       </div>
-                      <button class="btn btn-success" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) === -1)" ng-click="submitFollow(feed)">加入关注</button>
-                      <button class="btn btn-danger" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) !== -1)" ng-click="submitUnfollow(feed)">取消关注</button>
-                    </div>
-                    <div class="show-user-info">
-                      <h3><a ui-sref="user({name: feed.author.username})">{{feed.author.username}}</a></h3>
-                      <p class="show-user-profile">{{feed.author.profile}}</p>
+                      <div class="author-profile">
+                        {{feed.author.profile}}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="feed-author-info">
               <div class="author-name">
                 <a ui-sref="user({name: feed.author.username})">{{feed.author.username}}</a>

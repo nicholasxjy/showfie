@@ -1,110 +1,88 @@
-<div class="sf-feed-wrap">
-  <div class="feed-content-wrap detail-content-wrap">
-    <div class="feed-author-wrap">
-      <div class="feed-author-top">
-        <a>
-          <img ng-src="{{feed.author.avatar}}" class="img-responsive img-circle">
-        </a>
-        <div class="feed-author-info">
-          <div class="author-name">
-            <a ui-sref="user({name: feed.author.username})">{{feed.author.username}}</a>
-          </div>
-          <div class="feed-time">
-            {{feed.createdAt | date: 'MM-dd hh:ss'}}
-          </div>
+<div class="feed-detail-content">
+  <div class="detail-author-wrap">
+    <div class="detail-author-top">
+      <a>
+        <img ng-src="{{feed.author.avatar}}" class="img-responsive img-circle">
+      </a>
+      <div class="detail-author-info">
+        <div class="author-name">
+          <a ui-sref="user({name: feed.author.username})">{{feed.author.username}}</a>
         </div>
-        <button class="btn btn-success" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) === -1)" ng-click="submitFollow(feed)">加入关注</button>
-        <button class="btn btn-danger" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) !== -1)" ng-click="submitUnfollow(feed)">取消关注</button>
+        <div class="feed-time">
+          {{feed.createdAt | date: 'MM-dd hh:ss'}}
+        </div>
       </div>
-    </div>
-    <div class="feed-content">
-      <p>{{feed.content}}</p>
-    </div>
-    <div ng-if="feed.attachment.type && feed.attachment.type==='image'" class="detail-attachment-wrap">
-      <img ng-src="{{feed.attachment.url}}" class="img-responsive">
-    </div>
-    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
-      <videogular vg-theme="feed.attachment.config.theme">
-        <vg-video vg-src="feed.attachment.config.sources">
-        </vg-video>
-        <vg-controls>
-          <vg-play-pause-button></vg-play-pause-button>
-          <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
-          <vg-scrubBar>
-            <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
-          </vg-scrubBar>
-          <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
-          <vg-volume>
-            <vg-mutebutton></vg-mutebutton>
-            <vg-volumebar></vg-volumebar>
-          </vg-volume>
-          <vg-fullscreenButton></vg-fullscreenButton>
-        </vg-controls>
-        <vg-overlay-play></vg-overlay-play>
-        <vg-poster-image vg-url='feed.attachment.config.plugins.poster'></vg-poster-image>
-      </videogular>
-    </div>
-    <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
-      <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
-        <vg-audio vg-src="feed.attachment.config.sources">
-        </vg-audio>
-        <vg-controls>
-          <vg-play-pause-button></vg-play-pause-button>
-          <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
-          <vg-scrubBar>
-            <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
-          </vg-scrubBar>
-          <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
-          <vg-volume>
-            <vg-mutebutton></vg-mutebutton>
-            <vg-volumebar></vg-volumebar>
-          </vg-volume>
-          <vg-fullscreenButton></vg-fullscreenButton>
-        </vg-controls>
-      </videogular>
-    </div>
-    <div class="feed-action-wrap">
-      <ul class="list-inline likes-action-wrap">
-        <li>
-          <a class="btn btn-default" ng-click="submitLike(feed)" ng-if="likeusers.indexOf(user._id) === -1">+{{likeusers.length}}</a>
-          <a class="btn btn-danger" ng-click="submitUnlike(feed)" ng-if="likeusers.indexOf(user._id) !== -1">+{{likeusers.length}}</a>
-        </li>
-        <li>
-          <a class="btn btn-info" ng-click="addComment()">添加评论</a>
-        </li>
-      </ul>
-      <ul class="list-inline likes-wrap" ng-if="feed.likes.length > 0">
-        <li ng-repeat="like in feed.likes">
-          <a ui-sref="user({name: like.username})" sftitle="{{like.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
-            <img ng-src="{{like.avatar}}" class="img-responsive img-circle">
-          </a>
-        </li>
-      </ul>
+      <button class="btn btn-success follow-btn" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) === -1)" ng-click="submitFollow(feed)">加入关注</button>
+      <button class="btn btn-danger follow-btn" ng-if="(user._id !== feed.author._id) && (user.followers.indexOf(feed.author._id) !== -1)" ng-click="submitUnfollow(feed)">取消关注</button>
     </div>
   </div>
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Comments:</h3>
+  <div class="feed-content">
+    <p>{{feed.content}}</p>
   </div>
-  <div class="panel-body">
-    <p ng-if="feed.comments.length === 0">还没有评论!</p>
-    <ul class="list-unstyled" ng-if="feed.comments">
-      <li class="comment-item" ng-repeat="comment in feed.comments">
-        <div class="media">
-          <a class="media-left" ui-sref="user({name: comment.author.username})">
-            <img ng-src="{{comment.author.avatar}}" alt="{{comment.author.username}}" class="img-responsive img-circle">
-          </a>
-          <div class="media-body">
-            <p class="comment-top">
-              <strong class="media-heading">{{comment.author.username}}</strong>
-              <time>{{comment.createdAt | date: 'MM-dd hh:ss'}}</time>
-              <span class="fa fa-reply" ng-click="addComment(comment)">回复</span>
-            </p>
-            <p class="comment-content"><a ui-sref="user({name: comment.touser.username})">@{{comment.touser.username}}</a>{{comment.content}}</p>
-            <p class="comment-other">
-          </div>
-        </div>
+  <div ng-if="feed.attachment.type && feed.attachment.type==='image'" class="detail-attachment-wrap">
+    <a imgurl="{{feed.attachment.url}}" title="{{feed.attachment.name}}" fancy-box>
+      <img ng-src="{{feed.attachment.url}}" class="img-responsive img-rounded">
+    </a>
+  </div>
+  <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
+    <videogular vg-theme="feed.attachment.config.theme">
+      <vg-video vg-src="feed.attachment.config.sources">
+      </vg-video>
+      <vg-controls>
+        <vg-play-pause-button></vg-play-pause-button>
+        <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+        <vg-scrubBar>
+          <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+        </vg-scrubBar>
+        <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+        <vg-volume>
+          <vg-mutebutton></vg-mutebutton>
+          <vg-volumebar></vg-volumebar>
+        </vg-volume>
+        <vg-fullscreenButton></vg-fullscreenButton>
+      </vg-controls>
+      <vg-overlay-play></vg-overlay-play>
+      <vg-poster-image vg-url='feed.attachment.config.plugins.poster'></vg-poster-image>
+    </videogular>
+  </div>
+  <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
+    <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
+      <vg-audio vg-src="feed.attachment.config.sources">
+      </vg-audio>
+      <vg-controls>
+        <vg-play-pause-button></vg-play-pause-button>
+        <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+        <vg-scrubBar>
+          <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+        </vg-scrubBar>
+        <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+        <vg-volume>
+          <vg-mutebutton></vg-mutebutton>
+          <vg-volumebar></vg-volumebar>
+        </vg-volume>
+        <vg-fullscreenButton></vg-fullscreenButton>
+      </vg-controls>
+    </videogular>
+  </div>
+  <div class="feed-action-wrap">
+    <ul class="list-inline likes-wrap" ng-if="feed.likes.length > 0">
+      <li class="likes-title">
+        <a>赞过的人: </a>
+      </li>
+      <li ng-repeat="like in feed.likes" class="like-users">
+        <a ui-sref="user({name: like.username})" sftitle="{{like.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
+          <img ng-src="{{like.avatar}}" class="img-responsive img-rounded">
+        </a>
+      </li>
+    </ul>
+
+    <ul class="list-inline likes-action-wrap">
+      <li>
+        <a class="icon-heart" ng-click="submitLike(feed)" ng-if="likeusers.indexOf(user._id) === -1"><span>{{likeusers.length}}</span></a>
+        <a class="icon-heart" ng-click="submitUnlike(feed)" ng-if="likeusers.indexOf(user._id) !== -1"><span>{{likeusers.length}}</span></a>
+      </li>
+      <li class="comment-action">
+        <a class="icon-speech-bubble" ng-click="addComment()"><span>{{feed.comments.length}}</span></a>
       </li>
     </ul>
   </div>
