@@ -47,6 +47,13 @@
   </div>
   <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
     <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
+      <div class="audio-poster">
+        <div class="audio-info">
+          <div class="audio-singer-name">
+            {{feed.attachment.name}}
+          </div>
+        </div>
+      </div>
       <vg-audio vg-src="feed.attachment.config.sources">
       </vg-audio>
       <vg-controls>
@@ -85,5 +92,26 @@
         <a class="icon-speech-bubble" ng-click="addComment()"><span>{{feed.comments.length}}</span></a>
       </li>
     </ul>
+  </div>
+</div>
+<div class="feed-detail-comment panel panel-primary">
+
+  <div class="panel-body">
+    <div class="media" ng-repeat="comment in feed.comments">
+      <a class="media-left" ui-sref="user({name: comment.author.username})">
+        <img ng-src="{{comment.author.avatar}}" alt="{{comment.author.username}}" class="img-responsive img-circle">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">{{comment.author.username}}</h4>
+        <div class="comment-content">
+          <a ui-sref="user({name: comment.touser.username})">@{{comment.touser.username}}</a>{{comment.content}}
+        </div>
+        <div class="comment-bottom">
+          <a ng-click="addComment(comment)" class="icon-reply" sftitle="回复"
+          data-toggle="tooltip" sf-tooltip></a>
+          <i class="icon-clock"></i><span class="comment-time">{{comment.createdAt | date: 'MM:dd hh:mm'}}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

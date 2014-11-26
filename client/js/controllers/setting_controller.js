@@ -21,5 +21,11 @@
     $scope.$on('user:update', function(evt, newUser) {
       $scope.user = newUser;
     });
+    $scope.showUserInfo = function() {
+      $scope.userInfoState = !$scope.userInfoState;
+    }
+    $scope.hideUserInfo = function() {
+      $scope.userInfoState = false;
+    }
   }
 })();
