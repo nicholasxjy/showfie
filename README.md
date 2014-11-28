@@ -1,6 +1,6 @@
 ### showfie all the time
 
-** snapshots say everything **
+**snapshots say everything**
 
 ![snapsho1](/snapshot/home.png)
 
