@@ -1,12 +1,20 @@
-<div class="sf-wrap">
-  <div class="home-wrap sf-container">
-    <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()">
+<div class="sf-body">
+  <div ng-include="'views/partials/sidebar.html'"></div>
+  <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()"></div>
+  <div class="sf-container" ng-class="{shrunk: userInfoState}">
+    <div class="sf-container-inner">
+      <div ng-include="'views/partials/navbar.html'"></div>
+      <div class="sf-content">
+        <div ng-include="'views/partials/topfeed.html'"></div>
+        <div class="sf-feed-wrap">
+          <header class="feed-list-header">
+            <h2>Traveling</h2>
+            <p>Keep it in deep heart!</p>
+          </header>
+          <div ng-include="'views/partials/feed.html'"></div>
+        </div>
+      </div>
     </div>
-    <div ng-include="'views/partials/sidebar.html'"></div>
-    <div class="shrinkwrap" ng-class="{shrunk: userInfoState}">
-      <div ng-include="'views/partials/topbanner.html'"></div>
-      <div ng-include="'views/partials/feed.html'"></div>
-    </div>
-    <div ng-include="'views/partials/create-newfeed-button.html'"></div>
   </div>
+  <div ng-include="'views/partials/create-newfeed-button.html'"></div>
 </div>
