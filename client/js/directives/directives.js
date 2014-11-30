@@ -42,4 +42,13 @@
         }
       }
     })
+    .directive('galleryBgimage', function() {
+      return {
+        restrict: 'AE',
+        link: function(scope, element, attrs) {
+          var imgurl = attrs.imgurl;
+          $(element).css('background-image', 'url('+ imgurl +')');
+        }
+      }
+    })
 })();

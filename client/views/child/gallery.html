@@ -1,0 +1,32 @@
+<div class="sf-body">
+  <div ng-include="'views/partials/sidebar.html'"></div>
+  <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()"></div>
+  <div class="sf-container" ng-class="{shrunk: userInfoState}">
+    <div class="sf-container-inner">
+      <div ng-include="'views/partials/navbar.html'"></div>
+      <div class="sf-content">
+        <div class="sf-feed-wrap">
+          <header class="feed-list-header">
+            <h2>Traveling</h2>
+            <p>Keep it in deep heart!</p>
+          </header>
+          <div class="gallery-wrap">
+            <div class="gallery-content" masonry masonry-options="{itemSelector: '.galleryitem', columnWidth: '.gallery-sizer'}">
+              <article ng-repeat="feed in feeds" class="galleryitem masonry-brick">
+                <section>
+                  <a class="gallery-grid-link" href="" imgurl="{{feed.attachment.url}}" gallery-bgimage>
+                  </a>
+                  <div class="gallery-content">
+                    <p class="content">{{feed.content}}</p>
+                    <p>{{feed.createdAt | date: 'MMMM dd, yyyy'}}</p>
+                  </div>
+                </section>
+              </article>
+              <article class="gallery-sizer"></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

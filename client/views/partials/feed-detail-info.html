@@ -72,31 +72,26 @@
     </videogular>
   </div>
   <div class="feed-action-wrap">
-    <ul class="list-inline likes-wrap" ng-if="feed.likes.length > 0">
-      <li class="likes-title">
-        <a>赞过的人: </a>
-      </li>
-      <li ng-repeat="like in feed.likes" class="like-users">
-        <a ui-sref="user({name: like.username})" sftitle="{{like.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
-          <img ng-src="{{like.avatar}}" class="img-responsive img-rounded">
-        </a>
-      </li>
-    </ul>
-
     <ul class="list-inline likes-action-wrap">
       <li>
         <a class="icon-heart" ng-click="submitLike(feed)" ng-if="likeusers.indexOf(user._id) === -1"><span>{{likeusers.length}}</span></a>
         <a class="icon-heart" ng-click="submitUnlike(feed)" ng-if="likeusers.indexOf(user._id) !== -1"><span>{{likeusers.length}}</span></a>
       </li>
       <li class="comment-action">
-        <a class="icon-speech-bubble" ng-click="addComment()"><span>{{feed.comments.length}}</span></a>
+        <a class="icon-speech-bubble" ng-click="addComment()" sftitle="添加评论" data-toggle="tooltip" data-placement="top" sf-tooltip><span>{{feed.comments.length}}</span></a>
+      </li>
+      <li class="pull-right">
+        <ul class="list-inline likes-wrap" ng-if="feed.likes.length > 0">
+          <li ng-repeat="like in feed.likes" class="like-users">
+            <a ui-sref="user({name: like.username})" sftitle="{{like.username}}" data-toggle="tooltip" data-placement="top" sf-tooltip>
+              <img ng-src="{{like.avatar}}" class="img-responsive img-rounded">
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
-</div>
-<div class="feed-detail-comment panel panel-primary">
-
-  <div class="panel-body">
+  <div class="feed-comment-wrap">
     <div class="media" ng-repeat="comment in feed.comments">
       <a class="media-left" ui-sref="user({name: comment.author.username})">
         <img ng-src="{{comment.author.avatar}}" alt="{{comment.author.username}}" class="img-responsive img-circle">
