@@ -1,0 +1,40 @@
+<div class="sf-sidebar" ng-class="{active: userInfoState}">
+  <div class="sf-sidebar-inner">
+    <div class="user-wrap">
+      <div class="user-avatar">
+        <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
+        <div class="user-info">
+          <h4><a ui-sref="user({name: user.username})">{{user.username}}</a></h4>
+          <div class="gender-location">
+            <i class="icon-head"></i><span>{{user.gender}}</span>
+            <i class="icon-map-marker"></i><span>{{user.location}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="user-profile">
+        {{user.profile}}
+      </div>
+      <ul class="list-unstyled">
+        <li>
+          <a ui-sref="home"><i class="icon-home"></i>Home</a>
+        </li>
+        <li>
+          <a ui-sref="user({name: user.username})"><i class="icon-paper"></i>Posts</a>
+        </li>
+        <li>
+          <a ui-sref="user.followers({name: user.username})"><i class="icon-users"></i>Followers</a>
+        </li>
+        <li>
+          <a ui-sref="user.followings({name: user.username})"><i class="icon-users"></i>Followings</a>
+        </li>
+        <li class="devider"></li>
+        <li>
+          <a ui-sref="settings.profile"><i class="icon-cog"></i>Settings</a>
+        </li>
+        <li>
+          <a ui-sref="logout"><i class="icon-disc"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

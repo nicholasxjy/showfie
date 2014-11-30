@@ -1,17 +1,14 @@
 <div class="sf-wrap">
-    <div class="forget-wrap">
-        <div class="forget-wrap-inner animated bounceInDown">
+    <div class="sf-container forget-container">
+        <div class="forget-inner animated bounceInDown">
             <div class="close-wrap">
-                <a ui-sref="login" class="fa fa-times"></a>
+                <a ui-sref="login" class="icon-cross"></a>
             </div>
-            <div class="forget-tip">
-                Forget your password?
-            </div>
-            <div class="form-inner">
-                <form novalidate name="forgetForm" class="sf-form" ng-submit="submitforgetForm(user)">
+            <div class="sf-form-container">
+                <form novalidate name="forgetForm" class="login-form" ng-submit="submitforgetForm(user)">
                     <div class="form-group">
                         <input type="email" class="form-control login-field" ng-model="user.email" placeholder="Your Email" required>
-                        <label for="login-email" class="login-field-icon fa fa-envelope"></label>
+                        <label for="login-email" class="login-field-icon icon-mail"></label>
                     </div>
                     <button class="btn btn-block btn-success" type="submit" ng-disabled="forgetForm.$invalid">Submit</button>
                     <p class="td-success animated zoomIn" ng-show="isSucceed">{{successMessage}}</p>

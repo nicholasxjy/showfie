@@ -61,6 +61,12 @@
         console.log(err);
       });
 
+    $scope.showUserInfo = function() {
+      $scope.userInfoState = !$scope.userInfoState;
+    }
+    $scope.hideUserInfo = function() {
+      $scope.userInfoState = false;
+    }
     $scope.submitFollow = function(feed) {
       UserService.addFollow(feed.author._id)
         .then(function(res) {

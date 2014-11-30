@@ -1,51 +1,42 @@
 <div class="sf-wrap">
 <div class="userpage-wrap">
   <div class="user-section-inner">
-    <div class="user-top-banner">
-      <img ng-src="{{user.banner}}" alt="">
-      <div class="banner-blur-wrap" scroll-blur-effect>
-        <img ng-src="{{user.bannerblur}}" alt="">
-      </div>
-      <div class="top-action-wrap row">
-        <div class="brand-wrap col-md-6">
-          <a ui-sref="home" class="brand">Showfie</a>
-        </div>
-      </div>
-    </div>
-    <div class="user-content-wrap">
-      <div class="user-info-wrap">
-        <header class="user-info">
-          <div class="avatar-wrap">
-            <div class="avatar-wrap-inner">
+    <div class="sf-user-timeline" scroll-reveal>
+      <img ng-src="{{user.banner}}" alt="" class="timeline-bg">
+      <div class="timeline-overlay"></div>
+      <div class="timeline-content">
+        <div class="timeline-list">
+          <header class="timeline-user">
+            <div class="avatar-wrap">
               <img ng-src="{{user.avatar}}" alt="" class="img-responsive img-circle">
             </div>
-          </div>
-          <h1>{{user.username | uppercase}}</h1>
-          <p>{{user.profile}}</p>
-          <ul class="list-inline">
-            <li class="user-menu-item">
-              <a ui-sref="user.followings({name: user.username})">
-                <small>FOLLOWING</small>
-                {{user.followings.length}}
-              </a>
-            </li>
-            <li class="user-menu-item">
-              <a ui-sref="user.followers({name: username})">
-                <small>FOLLOWERS</small>
-                {{user.followers.length}}
-              </a>
-            </li>
-          </ul>
-        </header>
-        <div ui-view>
-          <div class="user-divider">
-            <a ui-sref="user({name: user.username})">{{user.username}}'s Showfies</a>
-          </div>
-          <div class="user-feeds-wrap container">
-            <div class="row">
-              <div class="col-md-8 col-md-offset-2 sf-user-middle">
-                <div ng-include="'views/partials/user-feed.html'"></div>
-              </div>
+            <h1>{{user.username | uppercase}}</h1>
+            <div class="gender-location">
+              <i class="icon-head"></i><span>{{user.gender}}</span>
+              <i class="icon-map-marker"></i><span>{{user.location}}</span>
+            </div>
+            <div class="timeline-user-profile">{{user.profile}}</div>
+            <ul class="list-inline timeline-ulist">
+              <li class="user-menu-item">
+                <a ui-sref="user.followings({name: user.username})">
+                  <small>FOLLOWING</small>
+                  {{user.followings.length}}
+                </a>
+              </li>
+              <li class="user-menu-item">
+                <a ui-sref="user.followers({name: username})">
+                  <small>FOLLOWERS</small>
+                  {{user.followers.length}}
+                </a>
+              </li>
+            </ul>
+          </header>
+          <div ui-view>
+            <div class="timeline-title">
+              {{user.username}}'s timeline
+            </div>
+            <div class="timeline-item-list">
+              <div ng-include="'views/partials/timeline-feed.html'"></div>
             </div>
           </div>
         </div>

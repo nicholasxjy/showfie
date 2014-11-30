@@ -15,15 +15,17 @@
       $scope.spinnerShow = true;
       UserService.login(userInfo)
         .success(function(res) {
-          $scope.spinnerShow = false;
-          if (res.status === 'success') {
-            console.log(res);
-            $state.go('home');
-          } else {
-            console.log(res);
-            $scope.hasError = true;
-            $scope.errorMessage = res.error;
-          }
+          $timeout(function() {
+            $scope.spinnerShow = false;
+            if (res.status === 'success') {
+              console.log(res);
+              $state.go('home');
+            } else {
+              console.log(res);
+              $scope.hasError = true;
+              $scope.errorMessage = res.error;
+            }
+          }, 1500);
         })
         .error(function(error) {
           console.log(error);

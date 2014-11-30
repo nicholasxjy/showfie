@@ -1,45 +1,51 @@
 <div class="sf-card">
+  <div class="sf-card-inner">
     <div class="user-card">
-        <div class="user-card-banner">
-            <img ng-src="{{user.banner}}" class="img-responsive">
-            <a ui-sref="settings.profile" class="user-setting-link"><i class="fa fa-gear"></i></a>
+      <div class="user-card-banner">
+        <img ng-src="{{user.banner}}" class="img-responsive">
+        <a ui-sref="settings.profile" class="user-setting-link icon-cog"></a>
+      </div>
+      <div class="user-card-info">
+        <img ng-src="{{user.avatar}}" class="user-card-avatar img-responsive img-circle">
+        <div class="user-info-wrap">
+          <div class="user-name">
+            <a ui-sref="user({name: user.username})">{{user.username}}</a>
+          </div>
+          <div class="user-gender-location">
+            <i class="icon-head"></i>
+            <span>{{user.gender}}</span>
+            <i class="icon-map-marker"></i>
+            <span>{{user.location}}</span>
+          </div>
         </div>
-        <div class="user-card-info">
-            <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
-            <div class="user-info-wrap">
-                <div class="user-name">
-                 <a ui-sref="user({name: user.username})">{{user.username}}</a>
-                </div>
-                <div class="user-gender-location">
-                    <i class="fa fa-user"></i>
-                    <span>{{user.gender}}</span>
-                    <i class="fa fa-map-marker"></i>
-                    <span>{{user.location}}</span>
-                </div>
-            </div>
-            <div class="user-profile">
-                {{user.profile}}
-            </div>
-            <ul class="list-inline">
-                <li>
-                    <a ui-sref="user({name: user.username})">
-                      <span class="user-feed-count">{{postcount}}</span>
-                      <span class="user-feed-title">posts</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="user.followers({name: user.username})">
-                      <span class="user-feed-count">{{user.followers.length}}</span>
-                      <span class="user-feed-title">followers</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="user.followings({name: user.username})">
-                      <span class="user-feed-count">{{user.followings.length}}</span>
-                      <span class="user-feed-title">following</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="user-profile">
+          {{user.profile}}
         </div>
+        <ul class="list-inline">
+          <li>
+            <a ui-sref="user({name: user.username})">
+              <span class="user-feed-title">posts</span>
+              <span class="user-feed-count">{{postcount}}</span>
+
+            </a>
+          </li>
+          <li>
+            <a ui-sref="user.followers({name: user.username})">
+            <span class="user-feed-title">followers</span>
+              <span class="user-feed-count">{{user.followers.length}}</span>
+
+            </a>
+          </li>
+          <li>
+            <a ui-sref="user.followings({name: user.username})">
+            <span class="user-feed-title">following</span>
+              <span class="user-feed-count">{{user.followings.length}}</span>
+
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
+

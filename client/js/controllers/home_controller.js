@@ -3,30 +3,40 @@
   angular
     .module('app.controllers')
     .controller('HomeController', [
+      '$rootScope',
       '$scope',
       'UserService',
       'FeedService',
       '$state',
       '$sce',
+      'ngDialog',
       homeCtrl
     ]);
-    function homeCtrl($scope, UserService, FeedService, $state, $sce) {
+    function homeCtrl($rootScope, $scope, UserService, FeedService, $state, $sce, ngDialog) {
+      $scope.userInfoState = false;
       UserService.getCurrentUser()
         .then(function(resUser) {
           if (resUser.status === 200 && resUser.data) {
             $scope.user = resUser.data.data;
             console.log($scope.user);
             $scope.postcount = resUser.data.userpostcount;
-            loadFeeds(1);
+            $scope.currentPage = 0;
+            $scope.feeds = [];
+            // loadFeeds($scope.currentPage);
           } else {
             $state.go('login');
           }
         })
-      $scope.$on('feed:new', function(evt) {
-        loadFeeds(1);
+      $rootScope.$on('feed:new', function(evt) {
+        loadFeeds($scope.currentPage);
         $scope.user.postcount = $scope.user.postcount + 1;
       });
-
+      $scope.showUserInfo = function() {
+        $scope.userInfoState = !$scope.userInfoState;
+      }
+      $scope.hideUserInfo = function() {
+        $scope.userInfoState = false;
+      }
       $scope.submitFollow = function(feed) {
         UserService.addFollow(feed.author._id)
           .then(function(res) {
@@ -71,6 +81,24 @@
             console.log(err);
           })
       }
+
+      $scope.nextPage = function() {
+        console.log('load more');
+        if ($scope.loadBusy) return;
+        $scope.loadBusy = true;
+        $scope.currentPage = $scope.currentPage + 1;
+        loadFeeds($scope.currentPage);
+      }
+
+
+      $scope.createNewFeed = function() {
+        ngDialog.open({
+          template:'views/partials/create-feed.html',
+          controller: 'CreateFeedController'
+        })
+      }
+
+
       function loadFeeds(currentPage) {
         FeedService.getAllFeeds(currentPage)
           .then(function(res) {
@@ -102,7 +130,10 @@
                 }
               }
             });
-            $scope.feeds = feeds;
+            $scope.feeds = $scope.feeds.concat(feeds);
+
+            $scope.loadBusy = false;
+
             console.log(feeds);
           }, function(err) {
             console.log(err);

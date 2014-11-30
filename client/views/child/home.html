@@ -1,21 +1,12 @@
 <div class="sf-wrap">
-  <div class="home-wrap">
-    <div ng-include="'views/partials/navbar.html'"></div>
-    <div class="sf-content">
-      <div class="container sf-container">
-        <div class="row">
-          <div class="col-md-3 sf-left-wrap">
-            <div ng-include="'views/partials/user-card.html'"></div>
-          </div>
-          <div class="col-md-6 sf-mid-wrap">
-            <div ng-include="'views/partials/feed.html'"></div>
-          </div>
-          <div class="col-md-3 sf-right-wrap">
-
-          </div>
-        </div>
-      </div>
+  <div class="home-wrap sf-container">
+    <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()">
     </div>
-    <div ng-include="'views/partials/create-modal.html'"></div>
+    <div ng-include="'views/partials/sidebar.html'"></div>
+    <div class="shrinkwrap" ng-class="{shrunk: userInfoState}">
+      <div ng-include="'views/partials/topbanner.html'"></div>
+      <div ng-include="'views/partials/feed.html'"></div>
+    </div>
+    <div ng-include="'views/partials/create-newfeed-button.html'"></div>
   </div>
 </div>

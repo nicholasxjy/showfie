@@ -1,0 +1,90 @@
+<div class="timeline-item-container" ng-repeat="feed in feeds">
+  <div class="timeline-top-icon">
+    <span class="icon-image" ng-if="feed.attachment.type==='image'"></span>
+    <span class="icon-microphone" ng-if="feed.attachment.type==='audio'"></span>
+    <span class="icon-video" ng-if="feed.attachment.type==='video'"></span>
+    <span class="icon-paper" ng-if="!feed.attachment"></span>
+  </div>
+  <div class="line"></div>
+  <div class="timeline-feed-content" data-sr="enter left please, and hustle 20px">
+    <div class="timeline-feed-inner">
+      <div class="timeline-time">
+        <div class="year">{{feed.createdAt | date: 'MM/dd/yy'}}</div>
+        <div class="hour">{{feed.createdAt | date: 'hh:mm'}}</div>
+      </div>
+      <div class="timeline-other">
+        <div class="timeline-author">
+          <div class="timeline-author-info">
+            <img ng-src="{{feed.author.avatar}}" class="img-responsive img-circle">
+            <div class="timeline-author-other">
+              <h4>{{feed.author.username}}</h4>
+              <div class="timeline-location" ng-if="feed.location"><i class="icon-map-marker"></i><span>{{feed.location}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-words">
+            {{feed.content}}
+          </div>
+          <div class="timeline-attachment" ng-if="feed.attachment">
+            <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='image'">
+              <a imgurl="{{feed.attachment.url}}" class="fancybox" title="{{feed.attachment.name}}" fancy-box>
+                <img ng-src="{{feed.attachment.url}}" class="img-responsive">
+              </a>
+            </div>
+            <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='video'">
+              <videogular vg-theme="feed.attachment.config.theme">
+                <vg-video vg-src="feed.attachment.config.sources">
+                </vg-video>
+                <vg-controls>
+                  <vg-play-pause-button></vg-play-pause-button>
+                  <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+                  <vg-scrubBar>
+                    <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+                  </vg-scrubBar>
+                  <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+                  <vg-volume>
+                    <vg-mutebutton></vg-mutebutton>
+                    <vg-volumebar></vg-volumebar>
+                  </vg-volume>
+                  <vg-fullscreenButton></vg-fullscreenButton>
+                </vg-controls>
+                <vg-overlay-play></vg-overlay-play>
+                <vg-poster-image vg-url='feed.attachment.config.plugins.poster'></vg-poster-image>
+              </videogular>
+            </div>
+            <div class="feed-attach-wrap" ng-if="feed.attachment.type && feed.attachment.type==='audio'">
+              <videogular vg-theme="feed.attachment.config.theme.url" class="videogular-container audio">
+                <div class="audio-poster">
+                  <div class="audio-info">
+                    <div class="audio-singer-name">
+                      {{feed.attachment.name}}
+                    </div>
+                  </div>
+                </div>
+                <vg-audio vg-src="feed.attachment.config.sources">
+                </vg-audio>
+                <vg-controls>
+                  <vg-play-pause-button></vg-play-pause-button>
+                  <vg-timedisplay>{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+                  <vg-scrubBar>
+                    <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+                  </vg-scrubBar>
+                  <vg-timedisplay>{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+                  <vg-volume>
+                    <vg-mutebutton></vg-mutebutton>
+                    <vg-volumebar></vg-volumebar>
+                  </vg-volume>
+                  <vg-fullscreenButton></vg-fullscreenButton>
+                </vg-controls>
+              </videogular>
+            </div>
+          </div>
+          <div class="timeline-like-comment">
+            <i class="icon-heart"></i><span>{{feed.likes.length}}</span>
+            <i class="icon-speech-bubble"></i><span>{{feed.comments.length}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
