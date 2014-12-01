@@ -7,10 +7,16 @@
       return {
         restrict: 'AE',
         link: function(scope, element, attrs) {
-          $('.shrinkwrap').scroll(function() {
+          attrs.$observe('imgurl', function() {
+            $(element).find('.real-banner').css('background-image', 'url('+ attrs.imgurl +')');
+          })
+          attrs.$observe('blururl', function() {
+            $(element).find('.blur-banner').css('background-image', 'url('+ attrs.blururl +')');
+          })
+          $(window).scroll(function() {
             var oVal;
-            oVal = $('.shrinkwrap').scrollTop()/170;
-            $(element).css('opacity', oVal);
+            oVal = $(window).scrollTop()/170;
+            $(element).find('.blur-banner').css('opacity', oVal);
           })
         }
       }

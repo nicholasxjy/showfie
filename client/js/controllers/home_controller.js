@@ -20,9 +20,9 @@
             $scope.user = resUser.data.data;
             console.log($scope.user);
             $scope.postcount = resUser.data.userpostcount;
-            $scope.currentPage = 0;
+            $scope.currentPage = 1;
             $scope.feeds = [];
-            // loadFeeds($scope.currentPage);
+            loadFeeds($scope.currentPage);
           } else {
             $state.go('login');
           }
@@ -81,16 +81,6 @@
             console.log(err);
           })
       }
-
-      $scope.nextPage = function() {
-        console.log('load more');
-        if ($scope.loadBusy) return;
-        $scope.loadBusy = true;
-        $scope.currentPage = $scope.currentPage + 1;
-        loadFeeds($scope.currentPage);
-      }
-
-
       $scope.createNewFeed = function() {
         ngDialog.open({
           template:'views/partials/create-feed.html',
@@ -131,9 +121,6 @@
               }
             });
             $scope.feeds = $scope.feeds.concat(feeds);
-
-            $scope.loadBusy = false;
-
             console.log(feeds);
           }, function(err) {
             console.log(err);

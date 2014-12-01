@@ -1,47 +1,53 @@
 <div ui-view>
- <div class="sf-wrap">
- <div class="userpage-wrap">
-   <div class="user-section-inner">
-     <div class="sf-user-timeline" scroll-reveal>
-       <img ng-src="{{user.banner}}" alt="" class="timeline-bg">
-       <div class="timeline-overlay"></div>
-       <div class="timeline-content">
-         <div class="timeline-list">
-           <header class="timeline-user">
-             <div class="avatar-wrap">
-               <img ng-src="{{user.avatar}}" alt="" class="img-responsive img-circle">
-             </div>
-             <h1>{{user.username | uppercase}}</h1>
-             <div class="gender-location">
-               <i class="icon-head"></i><span>{{user.gender}}</span>
-               <i class="icon-map-marker"></i><span>{{user.location}}</span>
-             </div>
-             <div class="timeline-user-profile">{{user.profile}}</div>
-             <ul class="list-inline timeline-ulist">
-               <li class="user-menu-item">
-                 <a ui-sref="user.followings({name: user.username})">
-                   <small>FOLLOWING</small>
-                   {{user.followings.length}}
-                 </a>
-               </li>
-               <li class="user-menu-item">
-                 <a ui-sref="user.followers({name: username})">
-                   <small>FOLLOWERS</small>
-                   {{user.followers.length}}
-                 </a>
-               </li>
-             </ul>
-           </header>
-           <div class="timeline-title">
-             {{user.username}}'s timeline
-           </div>
-           <div class="timeline-item-list">
-             <div ng-include="'views/partials/timeline-feed.html'"></div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
- </div>
+  <div class="sf-body">
+    <div ng-include="'views/partials/sidebar.html'"></div>
+    <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()"></div>
+    <div class="sf-container" ng-class="{shrunk: userInfoState}">
+      <div class="sf-container-inner">
+        <div class="sf-content sf-userpage-content">
+          <div class="userpage-topbanner" imgurl="{{user.banner}}" blururl="{{user.bannerblur}}" scroll-blur-effect>
+            <div class="user-banner real-banner"></div>
+            <div class="user-banner blur-banner"></div>
+          </div>
+          <div class="top-action">
+            <a ui-sref="home" class="icon-menu"></a>
+          </div>
+          <div class="user-page-content">
+            <header class="top-userinfo">
+              <div class="avatar-wrap">
+                <img ng-src="{{user.avatar}}" alt="" class="img-responsive img-circle">
+              </div>
+              <h1>{{user.username | uppercase}}</h1>
+              <div class="gender-location">
+                <i class="icon-head"></i><span>{{user.gender}}</span>
+                <i class="icon-map-marker"></i><span>{{user.location}}</span>
+              </div>
+              <div class="timeline-user-profile">{{user.profile}}</div>
+              <ul class="list-inline timeline-ulist">
+                <li class="user-menu-item">
+                  <a ui-sref="user.followings({name: user.username})">
+                    <small>FOLLOWING</small> {{user.followings.length}}
+                  </a>
+                </li>
+                <li class="user-menu-item">
+                  <a ui-sref="user.followers({name: username})">
+                    <small>FOLLOWERS</small> {{user.followers.length}}
+                  </a>
+                </li>
+              </ul>
+            </header>
+            <div class="sf-feed-wrap">
+              <header class="feed-list-header">
+                <h2>Traveling</h2>
+                <p>Keep it in deep heart!</p>
+              </header>
+              <div class="timeline-item-list">
+                <div ng-include="'views/partials/timeline-feed.html'"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
