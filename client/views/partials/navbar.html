@@ -1,46 +1,25 @@
 <nav class="navbar navbar-default navbar-fixed-top" id="sf-navbar" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand sidebar-toggle icon-menu" ng-click="showUserInfo()"></a>
+      <a class="navbar-brand sidebar-toggle" ng-click="showUserInfo()">
+        <span class="icon-menu"></span>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a ui-sref="user({name: user.username})">Me</a>
+      <ul class="nav navbar-nav navbar-main">
+        <li><a ui-sref="home">HOME</a>
         </li>
-        <li><a ui-sref="user.gallery({name: user.username})">Gallery</a>
+        <li><a ui-sref="user.gallery({name: user.username})">GALLERY</a>
         </li>
         <li>
-          <a ui-sref="messages">Messages <span class="badge badge-not-zero" ng-if="user.notification.length">{{user.notification.length}}</span></a>
+          <a ui-sref="messages">MESSAGES <span class="badge badge-not-zero" ng-if="user.notification.length">{{user.notification.length}}</span></a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" id="navbar-right-dropdown">
-            <img ng-src="{{user.avatar}}" class="img-responsive img-circle">
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a ui-sref="search"><i class="fa fa-search"></i>search</a>
-            </li>
-            <li><a ui-sref="settings.profile"><i class="fa fa-gear"></i>settings</a>
-            </li>
-            <li class="divider"></li>
-            <li><a ui-sref="logout">Log out</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a ui-sref="messages" class="icon-bell"><span class="badge user-notification" ng-if="user.notification.length">{{user.notification.length}}</span></a>
-        </li>
-        <li>
-          <a ui-sref="search" class="icon-search"></a>
-        </li>
-      </ul>
+      <form id="search-query-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
     </div>
     <!-- /.navbar-collapse -->
   </div>

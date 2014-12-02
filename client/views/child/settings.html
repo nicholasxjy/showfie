@@ -1,25 +1,11 @@
-<div class="sf-wrap">
-  <div class="home-wrap sf-container">
-    <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()">
-    </div>
-    <div ng-include="'views/partials/sidebar.html'"></div>
-    <div class="shrinkwrap" ng-class="{shrunk: userInfoState}">
-      <div class="detail-container">
-        <img ng-src="{{user.banner}}" class="timeline-bg">
-        <div class="timeline-overlay"></div>
-        <div class="topbanner-action">
-          <div class="topbanner-action-inner">
-            <a class="sidebar-toggle icon-menu" ng-click="showUserInfo()"></a>
-            <a ui-sref="messages" class="icon-bell"><span class="badge user-notification" ng-if="user.notification.length">{{user.notification.length}}</span></a>
-            <a ui-sref="search" class="icon-search"></a>
-          </div>
-        </div>
-        <div class="setting-list">
-          <div ng-include="'views/partials/setting-list.html'"></div>
-        </div>
+<div class="sf-body">
+  <div ng-include="'views/partials/sidebar.html'"></div>
+  <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()"></div>
+  <div class="sf-container" ng-class="{shrunk: userInfoState}">
+    <div class="sf-container-inner">
+      <div ng-include="'views/partials/navbar.html'"></div>
+      <div class="sf-content settings-content">
 
-        <div class="detail-content" ui-view>
-          <div ng-include="'views/partials/settings.profile.html'"></div>
         </div>
       </div>
     </div>
