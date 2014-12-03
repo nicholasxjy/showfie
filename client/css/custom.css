@@ -1766,7 +1766,10 @@ h3.comment-title {
     width: 300px;
     height: 60px;
     background-color: #ffffff;
-    margin-bottom: 8px; }
+    margin-bottom: 8px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
     .setting-list li a {
       display: block;
       height: 100%;
@@ -1809,6 +1812,10 @@ h3.comment-title {
 #profile-wrap .panel-heading h4 {
   padding-left: 10px;
   color: #bcbcbc; }
+
+#profile-wrap .panel-body {
+  padding-top: 30px;
+  padding-bottom: 30px; }
 
 .select-button {
   height: 38px;

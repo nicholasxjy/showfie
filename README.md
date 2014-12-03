@@ -4,8 +4,6 @@
 
 ![snapsho1](/snapshot/home.png)
 
-![snapshot2](/snapshot/sidebar.png)
-
-![snapshot3](/snapshot/post.png)
+![snapshot3](/snapshot/gallery.png)
 
 ![snapshot4](/snapshot/user.png)
