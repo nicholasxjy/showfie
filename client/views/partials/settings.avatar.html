@@ -1,11 +1,13 @@
-<div class="profile-wrap panel panel-default">
+<div class="panel panel-default" id="profile-wrap">
   <div class="panel-heading">
     <h4>头像设置</h4>
   </div>
   <div class="panel-body">
     <div class="avatar-wrap row">
       <div class="col-md-8 col-md-offset-2">
-        <img ng-src="{{avatar || user.avatar}}" class="img-responsive img-rounded" id="image-container">
+        <div class="setting-image-wrap">
+          <img ng-src="{{avatar || user.avatar}}" class="img-responsive img-rounded" id="image-container">
+        </div>
         <div class="action-button-wrap">
           <div class="select-button">
             <span>选择图片</span>

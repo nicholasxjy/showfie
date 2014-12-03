@@ -6,10 +6,11 @@
       '$scope',
       '$upload',
       '$timeout',
+      'SweetAlert',
       setavatarCtrl
     ]);
 
-  function setavatarCtrl($scope, $upload, $timeout) {
+  function setavatarCtrl($scope, $upload, $timeout, SweetAlert) {
     $scope.fileReaderSupported =window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.onImageSelect = function($files) {
         $scope.selectedFiles = $files;
@@ -31,7 +32,6 @@
         }
     };
     $scope.uploadAvatar = function() {
-      $scope.spinnerShow = true;
       var file;
       if ($scope.selectedFiles && $scope.selectedFiles.length > 0) {
         file = $scope.selectedFiles[0];
@@ -41,12 +41,11 @@
         file: file
       })
       .success(function(res) {
-        console.log(res);
         if (res.status === 'success') {
-          $scope.spinnerShow = false;
           //here reset all
           $scope.selectedFiles = null;
           $scope.$emit('user:update', res.data);
+          SweetAlert.swal("Cool!", "You changed your avatar!", "success");
         }
       })
     }

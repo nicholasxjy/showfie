@@ -20,6 +20,7 @@ angular
     "com.2fdevs.videogular.plugins.controls",
     'com.2fdevs.videogular.plugins.poster',
     'wu.masonry',
+    'oitozero.ngSweetAlert',
     'infinite-scroll',
     'app.services',
     'app.directives',
