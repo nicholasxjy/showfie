@@ -1,18 +1,40 @@
-<div class="user-divider">
-  <a ui-sref="user({name: user.username})">{{user.username}}'s Followings</a>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-3" ng-repeat="following in user.followings">
-      <div class="follow-wrap">
-        <div class="follow-avatar">
-          <img ng-src="{{following.avatar}}" class="img-responsive img-circle">
-        </div>
-        <div class="follow-info">
-          <h4>{{following.username}}</h4>
-          <button class="btn btn-success" ng-if="(user._id === cuser._id) && (cuser.followers.indexOf(following._id) === -1)" ng-click="submitfollow(following)">加入关注</button>
-          <button class="btn btn-danger" ng-if="(user._id === cuser._id) && (cuser.followers.indexOf(following._id) !== -1)" ng-click="submitUnfollow(following)">取消关注</button>
-          <p>{{following.profile}}</p>
+<div class="sf-body">
+  <div ng-include="'views/partials/sidebar.html'"></div>
+  <div class="sf-overlay" ng-class="{active: userInfoState}" ng-click="hideUserInfo()"></div>
+  <div class="sf-container" ng-class="{shrunk: userInfoState}">
+    <div class="sf-container-inner">
+      <div ng-include="'views/partials/navbar.html'"></div>
+      <div class="sf-content follow-content">
+        <div class="sf-feed-wrap">
+          <header class="feed-list-header">
+            <h2>{{user.username}}</h2>
+            <p>All the followers!</p>
+          </header>
+          <div class="follow-wrap">
+            <div class="follow-content" masonry masonry-options="{itemSelector: '.followitem', columnWidth: '.follow-sizer', gutter: 30}">
+              <article ng-repeat="following in user.followings" class="followitem masonry-brick">
+                <div class="follow-card">
+                  <div class="follow-card-left">
+                    <img ng-src="{{following.avatar}}">
+                    <section>
+                      <div class="follow-button">
+                        <span>Follow</span>
+                      </div>
+                    </section>
+                  </div>
+                  <div class="follow-card-right">
+                    <h2>{{following.username}}</h2>
+                    <p>
+                      <i class="icon-head"></i><span>{{following.gender}}</span>
+                      <i class="icon-map-marker"></i><span>{{following.location}}</span>
+                    </p>
+                    <p class="profile">{{following.profile}}</p>
+                  </div>
+                </div>
+              </article>
+              <article class="follow-sizer"></article>
+            </div>
+          </div>
         </div>
       </div>
     </div>

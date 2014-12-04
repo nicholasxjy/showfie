@@ -28,6 +28,13 @@
         }, function(err) {
           console.log(err);
         })
+
+      $scope.showUserInfo = function() {
+        $scope.userInfoState = !$scope.userInfoState;
+      }
+      $scope.hideUserInfo = function() {
+        $scope.userInfoState = false;
+      }
     }
 
 })();
