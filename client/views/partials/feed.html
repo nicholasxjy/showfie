@@ -109,7 +109,7 @@
           <ul class="list-inline">
             <li>
               <a ng-click="submitLike(feed)" ng-if="feed.likes.indexOf(user._id) === -1"><i class="icon-heart"></i>{{feed.likes.length}}</a>
-              <a ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="icon-heart"></i>{{feed.likes.length}}</a>
+              <a ng-click="submitUnlike(feed)" ng-if="feed.likes.indexOf(user._id) !== -1"><i class="icon-heart has-liked"></i>{{feed.likes.length}}</a>
             </li>
             <li>
               <a ui-sref="feeddetail({id: feed._id})"><i class="icon-speech-bubble"></i>{{feed.comments.length}}</a>

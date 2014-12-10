@@ -75,7 +75,7 @@
     <ul class="list-inline likes-action-wrap">
       <li>
         <a class="icon-heart" ng-click="submitLike(feed)" ng-if="likeusers.indexOf(user._id) === -1"><span>{{likeusers.length}}</span></a>
-        <a class="icon-heart" ng-click="submitUnlike(feed)" ng-if="likeusers.indexOf(user._id) !== -1"><span>{{likeusers.length}}</span></a>
+        <a class="icon-heart has-liked" ng-click="submitUnlike(feed)" ng-if="likeusers.indexOf(user._id) !== -1"><span>{{likeusers.length}}</span></a>
       </li>
       <li class="comment-action">
         <a class="icon-speech-bubble" ng-click="addComment()" sftitle="添加评论" data-toggle="tooltip" data-placement="top" sf-tooltip><span>{{feed.comments.length}}</span></a>
